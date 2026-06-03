@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const apiKey = env.VITE_DEEPSEEK_API_KEY || ''
 
   return {
-    base: '/sprint-ai-coach/',
+    base: env.VITE_BASE || '/',
     plugins: [react()],
     server: {
       proxy: {

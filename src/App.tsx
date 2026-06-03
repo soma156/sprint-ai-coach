@@ -9,7 +9,7 @@ import StatsPage from './pages/StatsPage'
 function App() {
   return (
     <AppProvider>
-      <BrowserRouter basename="/sprint-ai-coach">
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
