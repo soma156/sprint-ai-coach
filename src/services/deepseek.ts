@@ -219,10 +219,12 @@ function getAthleteType(t: UserFormData['technicalSkills']): string {
 
 // ========== API 调用 ==========
 
-// 前端始终调用 /api/generate-plan
-// 开发环境：Vite 代理转发到 DeepSeek，并自动添加 API Key
-// 生产环境：Vercel Serverless Function 处理，API Key 存在服务器上
-const API_URL = '/api/generate-plan'
+const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY as string
+
+// 开发环境：Vite 代理，生产环境：直接调 DeepSeek
+const API_URL = import.meta.env.DEV
+  ? '/api/deepseek/chat/completions'
+  : 'https://api.deepseek.com/v1/chat/completions'
 
 export async function generateTrainingPlan(data: UserFormData, adminKey?: string): Promise<TrainingPlan> {
   const requestBody = {
@@ -238,7 +240,10 @@ export async function generateTrainingPlan(data: UserFormData, adminKey?: string
 
   const response = await fetch(API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+    },
     body: JSON.stringify(requestBody),
   })
 
