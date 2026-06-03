@@ -219,11 +219,12 @@ function getAthleteType(t: UserFormData['technicalSkills']): string {
 
 // ========== API 调用 ==========
 
-// 开发环境：Vite 代理转发到 DeepSeek
-// 生产环境：调用 Vercel 服务器函数（含频率限制，API Key 在服务器上）
+// 开发环境：Vite 代理，生产环境：直接调 DeepSeek（国内可访问）
 const API_URL = import.meta.env.DEV
   ? '/api/deepseek/chat/completions'
-  : 'https://sprint-ai-coach.vercel.app/api/generate-plan'
+  : 'https://api.deepseek.com/v1/chat/completions'
+
+const API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY as string
 
 export async function generateTrainingPlan(data: UserFormData, adminKey?: string): Promise<TrainingPlan> {
   const requestBody = {
@@ -237,15 +238,12 @@ export async function generateTrainingPlan(data: UserFormData, adminKey?: string
     ...(adminKey ? { _admin: adminKey } : {}),
   }
 
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-  // 开发环境需要自己加 Authorization（Vite 代理不加的话）
-  if (import.meta.env.DEV) {
-    headers['Authorization'] = `Bearer ${import.meta.env.VITE_DEEPSEEK_API_KEY}`
-  }
-
   const response = await fetch(API_URL, {
     method: 'POST',
-    headers,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${API_KEY}`,
+    },
     body: JSON.stringify(requestBody),
   })
 
