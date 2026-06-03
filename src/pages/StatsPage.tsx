@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import { useTrainingLog } from '../hooks/useTrainingLog'
-import { computeDailyStats, computeTotalStats, computeWeeklyStats } from '../utils/stats'
+import { computeDailyStats, computeTotalStats } from '../utils/stats'
 import Charts from '../components/Charts'
 
 export default function StatsPage() {
@@ -13,8 +13,6 @@ export default function StatsPage() {
   // 计算统计数据
   const dailyStats = useMemo(() => computeDailyStats(logs), [logs])
   const totalStats = useMemo(() => computeTotalStats(logs), [logs])
-  const weeklyStats = useMemo(() => computeWeeklyStats(logs), [logs])
-
   const trainingPlan = state.trainingPlan
 
   // 训练量估算（每周训练天数 × 周数）
@@ -52,7 +50,7 @@ export default function StatsPage() {
       )}
 
       {/* 图表区域 */}
-      <Charts dailyStats={dailyStats} totalStats={totalStats} weeklyStats={weeklyStats} />
+      <Charts dailyStats={dailyStats} totalStats={totalStats} />
 
       {/* 无训练计划提示 */}
       {!trainingPlan && (

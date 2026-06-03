@@ -10,10 +10,9 @@ const COLORS = ['#F97316', '#3B82F6', '#22C55E', '#EAB308', '#A855F7', '#EC4899'
 interface Props {
   dailyStats: DailyStats[]
   totalStats: TotalStats
-  weeklyStats: { week: string; completed: number; total: number }[]
 }
 
-export default function Charts({ dailyStats, totalStats, weeklyStats }: Props) {
+export default function Charts({ dailyStats, totalStats }: Props) {
   // 饼图数据
   const pieData = [
     { name: '已完成', value: totalStats.completedCount },
@@ -115,7 +114,7 @@ export default function Charts({ dailyStats, totalStats, weeklyStats }: Props) {
                     borderRadius: '8px',
                     color: '#fff',
                   }}
-                  formatter={(value: number) => [`${value}%`, '平均完成度']}
+                  formatter={(value) => [`${value}%`, '平均完成度']}
                 />
                 <Bar dataKey="avgCompletion" name="平均完成度" radius={[4, 4, 0, 0]}>
                   {dailyStats.map((_, index) => (
