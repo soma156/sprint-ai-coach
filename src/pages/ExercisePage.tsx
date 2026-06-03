@@ -86,21 +86,35 @@ export default function ExercisePage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {filtered.map(e => (
           <div key={e.id} onClick={() => setSelected(e)}
-            className="bg-white/5 border border-white/10 rounded-xl p-4 cursor-pointer hover:border-accent/50 transition-colors">
-            <div className="flex items-start justify-between gap-2 mb-2">
-              <div>
-                <h3 className="text-white font-semibold">{e.name}</h3>
-                <p className="text-gray-500 text-xs">{e.nameEn}</p>
-              </div>
-              <span className={`shrink-0 text-xs px-2 py-0.5 rounded border ${CAT_COLORS[e.category]}`}>
-                {CAT_LABELS[e.category]}
-              </span>
+            className="bg-white/5 border border-white/10 rounded-xl overflow-hidden cursor-pointer hover:border-accent/50 transition-colors">
+            {/* 图片或占位图 */}
+            <div className="h-32 bg-white/5 flex items-center justify-center">
+              {e.imageUrl ? (
+                <img src={e.imageUrl} alt={e.name} className="w-full h-full object-cover" loading="lazy" />
+              ) : (
+                <span className="text-5xl opacity-30">
+                  {e.category === 'strength' ? '🏋️' : e.category === 'power' ? '💥' :
+                   e.category === 'plyometric' ? '🦘' : e.category === 'technique' ? '🏃' :
+                   e.category === 'mobility' ? '🤸' : e.category === 'core' ? '🎯' : '🧘'}
+                </span>
+              )}
             </div>
-            <div className="flex gap-1 flex-wrap">
-              {e.targetMuscles.slice(0, 3).map(m => (
-                <span key={m} className="text-xs bg-white/10 text-gray-400 px-1.5 py-0.5 rounded">{m}</span>
-              ))}
-              <span className="text-xs text-gray-500">· {e.equipment} · {e.difficulty}</span>
+            <div className="p-4">
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <div>
+                  <h3 className="text-white font-semibold">{e.name}</h3>
+                  <p className="text-gray-500 text-xs">{e.nameEn}</p>
+                </div>
+                <span className={`shrink-0 text-xs px-2 py-0.5 rounded border ${CAT_COLORS[e.category]}`}>
+                  {CAT_LABELS[e.category]}
+                </span>
+              </div>
+              <div className="flex gap-1 flex-wrap">
+                {e.targetMuscles.slice(0, 3).map(m => (
+                  <span key={m} className="text-xs bg-white/10 text-gray-400 px-1.5 py-0.5 rounded">{m}</span>
+                ))}
+                <span className="text-xs text-gray-500">· {e.equipment} · {e.difficulty}</span>
+              </div>
             </div>
           </div>
         ))}
@@ -114,6 +128,22 @@ export default function ExercisePage() {
       {selected && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center pt-10 pb-10 overflow-y-auto" onClick={() => setSelected(null)}>
           <div className="bg-gray-900 border border-white/20 rounded-2xl max-w-2xl w-full mx-4 p-6 space-y-4" onClick={e => e.stopPropagation()}>
+            {/* 图片 */}
+            <div className="h-48 bg-white/5 rounded-xl overflow-hidden flex items-center justify-center">
+              {selected.imageUrl ? (
+                <img src={selected.imageUrl} alt={selected.name} className="w-full h-full object-cover" />
+              ) : (
+                <div className="text-center">
+                  <span className="text-7xl opacity-20 block mb-2">
+                    {selected.category === 'strength' ? '🏋️' : selected.category === 'power' ? '💥' :
+                     selected.category === 'plyometric' ? '🦘' : selected.category === 'technique' ? '🏃' :
+                     selected.category === 'mobility' ? '🤸' : selected.category === 'core' ? '🎯' : '🧘'}
+                  </span>
+                  <p className="text-gray-600 text-xs">暂无图片 · 可自行添加 imageUrl</p>
+                </div>
+              )}
+            </div>
+
             {/* 标题 */}
             <div className="flex justify-between items-start">
               <div>

@@ -281,6 +281,7 @@ export interface Exercise {
   steps: string[]
   precautions: string[]
   setsReps: string
+  imageUrl?: string
 }
 
 // ========== 视频分析 ==========
