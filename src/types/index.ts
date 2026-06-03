@@ -254,6 +254,29 @@ export interface DeepSeekRequest {
   max_tokens?: number
 }
 
+// ========== 视频动作分析 ==========
+
+export interface CapturedFrame {
+  id: string
+  dataUrl: string        // 截图的 base64 数据
+  timestamp: number      // 视频中的时间点（秒）
+  phase: string          // 动作阶段（起跑/加速/途中跑/冲刺等）
+  userNote: string       // 用户对截图的简单描述
+}
+
+export interface VideoAnalysisResult {
+  overallAssessment: string     // 整体评估
+  errors: {
+    error: string               // 具体错误
+    whyWrong: string            // 为什么是错的（生物力学原理）
+    howToFix: string            // 如何纠正
+    exercises: string           // 强化训练方法
+    phase: string               // 所属阶段
+  }[]
+  strengths: string[]           // 做得好的地方
+  keyRecommendations: string[]  // 关键建议
+}
+
 export interface DeepSeekResponse {
   choices: Array<{ message: { content: string } }>
 }
