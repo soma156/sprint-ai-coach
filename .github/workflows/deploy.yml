@@ -31,7 +31,7 @@ jobs:
 
       - name: 构建项目
         env:
-          VITE_DEEPSEEK_API_KEY: ${{ secrets.VITE_DEEPSEEK_API_KEY }}
+          VITE_DEEPSEEK_API_KEY: dummy-key-not-used-in-production
         run: npm run build
 
       - name: 配置 Pages
