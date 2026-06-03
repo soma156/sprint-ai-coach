@@ -1278,6 +1278,354 @@ export const exercises: Exercise[] = [
     precautions: ['从轻哑铃开始学习技术', '哑铃轨迹是垂直向上的（不是向前抛）', '下蹲接哑铃时保持背部挺直', '手腕和肩部必须充分热身'],
     setsReps: '3-4组 × 4-6次/侧，组间休息 2分钟',
   },
+
+  // ==========================================
+  //  二十三、哑铃训练（补充）
+  // ==========================================
+
+  {
+    id: 'dumbbell-squat', name: '哑铃深蹲', nameEn: 'Dumbbell Squat',
+    category: 'strength', subCategory: '基础力量',
+    targetMuscles: ['股四头肌', '臀大肌', '腘绳肌', '核心'],
+    bodyRegion: '臀腿髋', equipment: '哑铃', sprintPhase: '起跑/加速',
+    difficulty: '初级',
+    description: '哑铃版深蹲。双手持哑铃于身体两侧，负重位置更低更安全，同时训练握力。',
+    steps: ['双手各持哑铃置于身体两侧', '双脚与肩同宽，下蹲至大腿平行地面', '保持躯干直立，站起时哑铃贴近身体'],
+    precautions: ['哑铃不要撞到膝盖', '重量不够可进阶单腿深蹲', '保持手腕中立'],
+    setsReps: '3-4组 × 8-15次，组间休息 1.5-2分钟',
+  },
+  {
+    id: 'dumbbell-rdl', name: '哑铃罗马尼亚硬拉', nameEn: 'Dumbbell RDL',
+    category: 'strength', subCategory: '基础力量',
+    targetMuscles: ['腘绳肌', '臀大肌', '竖脊肌'],
+    bodyRegion: '臀腿髋', equipment: '哑铃', sprintPhase: '加速/最高速度',
+    difficulty: '初级',
+    description: '哑铃版RDL。相比杠铃版减少下背压力，更适合初学者建立后链发力模式。',
+    steps: ['双手持哑铃置于大腿前', '膝盖微屈全程不变', '臀部后推，哑铃沿腿下滑', '腘绳肌拉伸后臀部发力回直立位'],
+    precautions: ['哑铃贴近身体', '背部平直', '感受腘绳肌拉伸优先'],
+    setsReps: '3-4组 × 8-12次，组间休息 1.5-2分钟',
+  },
+  {
+    id: 'dumbbell-step-up', name: '哑铃登阶', nameEn: 'Dumbbell Step-Up',
+    category: 'strength', subCategory: '单侧力量',
+    targetMuscles: ['臀大肌', '股四头肌', '腘绳肌'],
+    bodyRegion: '臀腿髋', equipment: '哑铃', sprintPhase: '加速',
+    difficulty: '初级',
+    description: '功能性单侧训练。登阶模拟每步蹬伸，强调单腿向心力量输出。',
+    steps: ['双手持哑铃，面对膝高度的跳箱', '一脚完全踩在箱上', '该腿发力蹬上箱（不靠后腿推蹬）', '控制下放'],
+    precautions: ['发力腿是箱上的腿', '箱高约膝盖高度', '控制下放不自由落体'],
+    setsReps: '3-4组 × 8-12次/侧，组间休息 1.5分钟',
+  },
+  {
+    id: 'dumbbell-lateral-raise', name: '哑铃侧平举', nameEn: 'Dumbbell Lateral Raise',
+    category: 'strength', subCategory: '上肢力量',
+    targetMuscles: ['三角肌中束', '斜方肌'],
+    bodyRegion: '上肢', equipment: '哑铃', sprintPhase: '全部阶段',
+    difficulty: '初级',
+    description: '肩部外侧力量。强壮的肩部维持摆臂横向稳定，减少能量泄漏。',
+    steps: ['双手持轻哑铃于体侧', '微屈肘抬臂至肩高度', '控制下放', '不借力摆动'],
+    precautions: ['小重量训练！', '不耸肩', '身体不摆动'],
+    setsReps: '3组 × 12-20次，组间休息 1分钟',
+  },
+  {
+    id: 'dumbbell-bicep-curl', name: '哑铃弯举', nameEn: 'Dumbbell Bicep Curl',
+    category: 'strength', subCategory: '上肢力量',
+    targetMuscles: ['肱二头肌', '肱肌'],
+    bodyRegion: '上肢', equipment: '哑铃', sprintPhase: '全部阶段',
+    difficulty: '初级',
+    description: '肱二头肌力量。短跑前摆阶段由肱二头肌和肩前部发力。',
+    steps: ['站姿持哑铃，肘部固定体侧', '弯举至肩', '顶峰收缩后控制下放'],
+    precautions: ['肘部固定不摆动', '控制离心阶段', '手腕中立'],
+    setsReps: '3组 × 10-15次，组间休息 1分钟',
+  },
+
+  // ==========================================
+  //  二十四、壶铃训练（扩充）
+  // ==========================================
+
+  {
+    id: 'kettlebell-goblet-squat', name: '壶铃高脚杯深蹲', nameEn: 'Kettlebell Goblet Squat',
+    category: 'strength', subCategory: '基础力量',
+    targetMuscles: ['股四头肌', '臀大肌', '核心'],
+    bodyRegion: '臀腿髋', equipment: '壶铃', sprintPhase: '起跑/加速',
+    difficulty: '初级',
+    description: '用壶铃做高脚杯深蹲，壶铃的紧凑形状让负重更贴合身体。',
+    steps: ['双手握壶铃手柄两端，置于胸前', '肘部在膝盖之间，下蹲至大腿平行地面', '肘部轻推膝盖帮助膝盖对齐脚尖'],
+    precautions: ['壶铃贴胸', '不低头看壶铃', '从轻壶铃开始'],
+    setsReps: '3-4组 × 8-15次，组间休息 1.5分钟',
+  },
+  {
+    id: 'kettlebell-single-leg-rdl', name: '壶铃单腿硬拉', nameEn: 'Kettlebell Single-Leg RDL',
+    category: 'strength', subCategory: '单侧力量',
+    targetMuscles: ['腘绳肌', '臀大肌', '踝关节稳定肌'],
+    bodyRegion: '臀腿髋', equipment: '壶铃', sprintPhase: '最高速度',
+    difficulty: '中级',
+    description: '用壶铃做单腿RDL，壶铃在身体一侧增加独特的平衡挑战。',
+    steps: ['单手持壶铃，单腿站立', '自由腿后伸，躯干前倾至平行地面', '支撑腿腘绳肌发力拉回直立'],
+    precautions: ['先徒手掌握平衡', '支撑膝微屈15-20度', '对侧手持壶铃更容易平衡'],
+    setsReps: '3-4组 × 8-10次/侧，组间休息 1.5分钟',
+  },
+  {
+    id: 'kettlebell-clean', name: '壶铃高翻', nameEn: 'Kettlebell Clean',
+    category: 'power', subCategory: '爆发力（弹震式）',
+    targetMuscles: ['臀大肌', '腘绳肌', '三角肌', '核心'],
+    bodyRegion: '全身', equipment: '壶铃', sprintPhase: '加速',
+    difficulty: '中级',
+    description: '壶铃版高翻。技术门槛低于杠铃版，训练全身爆发力协调。',
+    steps: ['壶铃置于双脚间，屈髋握壶铃', '爆发伸髋，壶铃沿身体上拉', '肘部快速翻转，壶铃落于前臂和胸口间', '站直完成'],
+    precautions: ['翻转时手腕要快（避免砸到手腕）', '从轻壶铃开始', '在教练指导下学习'],
+    setsReps: '3-4组 × 5-8次/侧，组间休息 2分钟',
+  },
+  {
+    id: 'turkish-getup', name: '土耳其起立', nameEn: 'Turkish Get-Up',
+    category: 'strength', subCategory: '全身稳定',
+    targetMuscles: ['肩袖肌群', '核心（全方位）', '臀大肌', '肩部'],
+    bodyRegion: '全身', equipment: '壶铃', sprintPhase: '全部阶段',
+    difficulty: '中级',
+    description: '全身稳定性终极训练。从仰卧持壶铃到手伸直，通过各种姿势站起再躺下。',
+    steps: ['仰卧右手持壶铃伸直向天花板', '左臂45度撑地', '各步骤依次过渡：仰卧→坐姿→跪姿→站姿→再逆向返回'],
+    precautions: ['持壶铃手臂全程伸直锁定！', '眼睛看壶铃保持平衡', '每步稳定再进入下一步', '从极轻或无负重开始'],
+    setsReps: '每侧 3-5次（强调质量）',
+  },
+
+  // ==========================================
+  //  二十五、药球训练（扩充）
+  // ==========================================
+
+  {
+    id: 'med-ball-rotational-throw', name: '药球旋转抛掷', nameEn: 'Medicine Ball Rotational Throw',
+    category: 'power', subCategory: '爆发力（旋转）',
+    targetMuscles: ['腹斜肌', '臀大肌', '背阔肌', '肩部'],
+    bodyRegion: '全身', equipment: '实心球', sprintPhase: '弯道/加速',
+    difficulty: '初级',
+    description: '旋转爆发力训练！短跑肩-髋对侧旋转的专项力量。',
+    steps: ['侧身对墙，双手持球于身体一侧', '向远离墙方向旋转蓄力', '爆发性向墙旋转掷球', '接弹回球立即下一次'],
+    precautions: ['旋转来自髋和核心', '膝盖稳定不扭', '左右侧都练'],
+    setsReps: '3组 × 6-8次/侧，组间休息 1.5分钟',
+  },
+  {
+    id: 'med-ball-overhead-throw', name: '药球过顶前抛', nameEn: 'Medicine Ball Overhead Forward Throw',
+    category: 'power', subCategory: '爆发力（全身）',
+    targetMuscles: ['腹直肌', '背阔肌', '肱三头肌', '臀大肌', '腓肠肌'],
+    bodyRegion: '全身', equipment: '实心球', sprintPhase: '起跑',
+    difficulty: '初级',
+    description: '全身力量传递链训练。从头顶全力前抛，发力顺序：脚→髋→躯干→手臂。',
+    steps: ['持药球举过头顶', '微屈膝，球在头后', '踮脚+伸膝+躯干前屈+手臂前甩依次爆发', '全力向前上方45度抛掷'],
+    precautions: ['发力顺序不能反', '每次全力爆发', '球出手后身体自然跟进'],
+    setsReps: '3-4组 × 5-8次，组间休息 2分钟',
+  },
+  {
+    id: 'med-ball-scoop-toss', name: '药球抄底上抛', nameEn: 'Medicine Ball Scoop Toss',
+    category: 'power', subCategory: '爆发力（下肢）',
+    targetMuscles: ['臀大肌', '股四头肌', '腓肠肌', '核心'],
+    bodyRegion: '全身', equipment: '实心球', sprintPhase: '起跑/加速',
+    difficulty: '初级',
+    description: '模拟起跑蹬伸。从深蹲位双手双腿间前上方抛球，发力模式与起跑器蹬离一致。',
+    steps: ['双手持球置于双腿之间深蹲位', '爆发伸髋伸膝将球前上方抛出', '手臂完全伸展', '尽可能高远'],
+    precautions: ['不要只用手臂！发力来自髋膝', '球轨迹是前上方45度', '深蹲要够深'],
+    setsReps: '3-4组 × 5-8次，组间休息 2分钟',
+  },
+
+  // ==========================================
+  //  二十六、跳箱训练（扩充）
+  // ==========================================
+
+  {
+    id: 'seated-box-jump', name: '坐姿跳箱', nameEn: 'Seated Box Jump',
+    category: 'plyometric', subCategory: '增强式（垂直）',
+    targetMuscles: ['股四头肌', '臀大肌', '腓肠肌'],
+    bodyRegion: '臀腿髋', equipment: '跳箱', sprintPhase: '起跑/加速',
+    difficulty: '中级',
+    description: '消除反向动作的跳箱。从坐姿静止起跳，纯向心爆发力。',
+    steps: ['坐在箱/凳上面对跳箱', '不预摆，直接爆发跳上跳箱', '双脚同时着地缓冲'],
+    precautions: ['不要预摆', '前箱从低开始', '起跳时膝角约120度最佳'],
+    setsReps: '3-4组 × 3-6次，组间休息 2-3分钟',
+  },
+  {
+    id: 'lateral-box-jump', name: '侧向跳箱', nameEn: 'Lateral Box Jump',
+    category: 'plyometric', subCategory: '增强式（侧向）',
+    targetMuscles: ['臀中肌', '髋外展肌', '股四头肌'],
+    bodyRegion: '臀腿髋', equipment: '跳箱', sprintPhase: '弯道',
+    difficulty: '中级',
+    description: '侧向爆发力。发展额状面力量输出，帮助弯道和变向能力。',
+    steps: ['侧身站跳箱旁', '快速屈膝侧向跳上跳箱', '双脚同时着地缓冲', '左右交替'],
+    precautions: ['从低箱开始', '比较左右发力差距', '落地控制好'],
+    setsReps: '3组 × 4-6次/侧，组间休息 2分钟',
+  },
+
+  // ==========================================
+  //  二十七、雪橇训练（扩充）
+  // ==========================================
+
+  {
+    id: 'sled-drag-backward', name: '雪橇后退拖行', nameEn: 'Backward Sled Drag',
+    category: 'strength', subCategory: '离心/康复',
+    targetMuscles: ['股四头肌（离心）', '臀大肌', '核心'],
+    bodyRegion: '臀腿髋', equipment: '雪橇', sprintPhase: '恢复/康复',
+    difficulty: '初级',
+    description: '膝关节康复和股四头肌离心训练。对髌腱问题有显著康复效果。',
+    steps: ['面对雪橇双手拉带子', '后退行走，控制身体', '步伐均匀持续拖行20-40m'],
+    precautions: ['康复性训练不求重量', '小步后退', '髌腱不适从极轻开始'],
+    setsReps: '3-4组 × 20-40米',
+  },
+  {
+    id: 'sled-drag-forward', name: '雪橇前向拖行', nameEn: 'Forward Sled Drag',
+    category: 'strength', subCategory: '抗阻训练',
+    targetMuscles: ['臀大肌', '腘绳肌', '腓肠肌'],
+    bodyRegion: '全身', equipment: '雪橇', sprintPhase: '加速',
+    difficulty: '初级',
+    description: '前向拖行发展后链力量和耐力。比推雪橇更侧重臀部+腘绳肌。',
+    steps: ['背对雪橇拉带子或套腰上', '身体前倾向前行进', '每步后腿蹬伸推进'],
+    precautions: ['保持前倾不站直', '从轻重量开始', '可与推雪橇交替'],
+    setsReps: '3-4组 × 20-40米',
+  },
+  {
+    id: 'sled-lateral-drag', name: '雪橇侧向拖行', nameEn: 'Lateral Sled Drag',
+    category: 'strength', subCategory: '侧向稳定',
+    targetMuscles: ['臀中肌', '髋外展肌', '髋内收肌'],
+    bodyRegion: '臀腿髋', equipment: '雪橇', sprintPhase: '弯道/变向',
+    difficulty: '初级',
+    description: '侧向髋部稳定训练。训练常被忽视的髋部侧向稳定肌群。',
+    steps: ['侧身对雪橇拉带子', '侧向行走远离雪橇', '每步侧向蹬伸', '换方向重复'],
+    precautions: ['膝盖对齐脚尖', '小步侧移', '从极轻开始'],
+    setsReps: '3组 × 20-30米/方向',
+  },
+
+  // ==========================================
+  //  二十八、弹力带训练（扩充）
+  // ==========================================
+
+  {
+    id: 'band-standing-hip-flexion', name: '弹力带站姿抗阻抬膝', nameEn: 'Band Standing Hip Flexion',
+    category: 'strength', subCategory: '弹力带专项',
+    targetMuscles: ['髋屈肌', '股四头肌', '核心'],
+    bodyRegion: '臀腿髋', equipment: '弹力带', sprintPhase: '加速',
+    difficulty: '初级',
+    description: '站姿抗阻抬膝。更贴近跑步中的实际发力姿势。',
+    steps: ['弹力带固定身后低位套脚踝', '站姿扶墙', '快速抬膝至大腿平行地面', '控制还原'],
+    precautions: ['弹力带不要太重', '支撑腿站稳', '躯干不后仰'],
+    setsReps: '3组 × 12-15次/侧',
+  },
+  {
+    id: 'band-knee-drive', name: '弹力带冲刺抬膝', nameEn: 'Band Sprint Knee Drive',
+    category: 'power', subCategory: '弹力带专项',
+    targetMuscles: ['髋屈肌', '臀大肌', '核心'],
+    bodyRegion: '臀腿髋', equipment: '弹力带', sprintPhase: '加速',
+    difficulty: '初级',
+    description: '抗阻快速抬膝。弹力带阻力下训练髋屈肌的发力速率。',
+    steps: ['弹力带固定身后套腰或脚踝', '快速交替抬膝像高抬腿', '持续10-20秒最大频率'],
+    precautions: ['阻力不能影响频率', '抬膝高度优先于速度', '身体不太前倾'],
+    setsReps: '3-4组 × 10-20秒',
+  },
+  {
+    id: 'band-x-walk', name: '弹力带X型侧向行走', nameEn: 'Banded X-Walk',
+    category: 'strength', subCategory: '弹力带专项',
+    targetMuscles: ['臀中肌', '臀小肌', '髋外旋肌'],
+    bodyRegion: '臀腿髋', equipment: '弹力带', sprintPhase: '稳定性',
+    difficulty: '初级',
+    description: 'X型弹力带套双脚，提供外展+外旋双重阻力。',
+    steps: ['弹力带交叉套双脚踝（X型）', '微蹲侧向行走', '保持弹力带时刻绷紧'],
+    precautions: ['髋部不高低浮', '膝盖对齐脚尖', '弹力带松了说明步太小'],
+    setsReps: '3组 × 10-15步/方向',
+  },
+
+  // ==========================================
+  //  二十九、徒手自重训练（补充）
+  // ==========================================
+
+  {
+    id: 'pistol-squat-progression', name: '手枪深蹲进阶', nameEn: 'Pistol Squat Progression',
+    category: 'strength', subCategory: '单侧力量',
+    targetMuscles: ['股四头肌', '臀大肌', '核心', '踝关节稳定'],
+    bodyRegion: '臀腿髋', equipment: '徒手', sprintPhase: '加速',
+    difficulty: '高级',
+    description: '单腿深蹲终极自重训练。需要极强单腿力量、平衡和踝活动度。',
+    steps: ['退阶1：坐到箱/凳上再站起', '退阶2：扶墙辅助', '退阶3：双手前伸平衡', '退阶4：双手抱胸（最难）', '自由腿始终伸直前举'],
+    precautions: ['需要极好踝背屈活动度', '从退阶开始', '不追求速度', '多数运动员需退阶版本'],
+    setsReps: '每侧 3组 × 3-5次（或退阶 8-12次）',
+  },
+  {
+    id: 'single-leg-glute-bridge', name: '单腿臀桥', nameEn: 'Single-Leg Glute Bridge',
+    category: 'strength', subCategory: '臀肌激活',
+    targetMuscles: ['臀大肌', '腘绳肌'],
+    bodyRegion: '臀腿髋', equipment: '徒手', sprintPhase: '起跑/加速',
+    difficulty: '初级',
+    description: '单侧臀肌激活。检测左右侧臀肌力量差距。',
+    steps: ['仰卧单腿踩地，另腿伸直抬离', '支撑腿臀肌发力顶髋', '保持髋部水平不下沉', '顶部挤压臀肌'],
+    precautions: ['髋部必须水平', '腘绳肌抽筋减小幅度', '比较两侧差异'],
+    setsReps: '3组 × 12-20次/侧',
+  },
+  {
+    id: 'mountain-climber', name: '登山者', nameEn: 'Mountain Climbers',
+    category: 'core', subCategory: '动态核心',
+    targetMuscles: ['腹直肌', '髋屈肌', '肩部稳定'],
+    bodyRegion: '核心', equipment: '徒手', sprintPhase: '热身/体能',
+    difficulty: '初级',
+    description: '平板支撑位快速交替抬膝，核心稳定+髋屈动态训练。',
+    steps: ['俯卧撑姿势身体成直线', '快速交替膝盖向胸口', '上半身稳定不晃', '持续20-30秒'],
+    precautions: ['臀部不过高', '膝盖向胸口不向外', '核心稳定优先于速度'],
+    setsReps: '3组 × 20-45秒',
+  },
+  {
+    id: 'inverted-row', name: '反向划船', nameEn: 'Inverted Row',
+    category: 'strength', subCategory: '上肢力量',
+    targetMuscles: ['背阔肌', '菱形肌', '肱二头肌', '核心'],
+    bodyRegion: '上肢', equipment: '徒手', sprintPhase: '全部阶段',
+    difficulty: '初级',
+    description: '自重上肢拉训练。TRX/吊环/低杠均可，比引体向上门槛更低。',
+    steps: ['仰卧在低杠下方握杠', '身体成直线脚跟着地', '背部发力拉至胸口触杠', '控制下放'],
+    precautions: ['身体保持平直', '先夹背再屈肘', '握距不同刺激不同'],
+    setsReps: '3-4组 × 8-15次',
+  },
+
+  // ==========================================
+  //  三十、战绳/综合器械
+  // ==========================================
+
+  {
+    id: 'battle-rope-slam', name: '战绳交替下砸', nameEn: 'Battle Rope Alternating Slam',
+    category: 'power', subCategory: '上肢爆发力',
+    targetMuscles: ['三角肌', '背阔肌', '肱三头肌', '核心'],
+    bodyRegion: '上肢', equipment: '其他', sprintPhase: '加速/体能',
+    difficulty: '中级',
+    description: '上肢爆发力和肩部耐力。短跑运动员上肢疲劳会显著影响摆臂效率。',
+    steps: ['双手各持战绳一端', '微蹲核心收紧', '双臂交替快速下砸', '产生波浪', '持续15-30秒'],
+    precautions: ['发力来自肩和核心', '肩伤谨慎', '从短时间开始'],
+    setsReps: '3-4组 × 15-30秒',
+  },
+  {
+    id: 'battle-rope-slam-double', name: '战绳双砸', nameEn: 'Battle Rope Double Slam',
+    category: 'power', subCategory: '全身爆发力',
+    targetMuscles: ['腹直肌', '背阔肌', '三角肌', '股四头肌'],
+    bodyRegion: '全身', equipment: '其他', sprintPhase: '起跑',
+    difficulty: '初级',
+    description: '全身协调爆发。双臂举绳过头全力下砸，力量从脚到手的传递链。',
+    steps: ['持战绳两端', '踮脚尖举绳过头（完全伸展）', '爆发下蹲+手臂下砸', '利用弹性进行下一次'],
+    precautions: ['发力顺序：脚→髋→肩→手', '每次全力', '不是耐力训练'],
+    setsReps: '3-4组 × 8-12次',
+  },
+  {
+    id: 'partner-hamstring-fall', name: '搭档腘绳肌离心训练', nameEn: 'Partner Hamstring Fall',
+    category: 'strength', subCategory: '腘绳肌专项',
+    targetMuscles: ['腘绳肌（离心）'],
+    bodyRegion: '臀腿髋', equipment: '其他', sprintPhase: '最高速度',
+    difficulty: '中级',
+    description: '北欧弯举的搭档辅助版。搭档按住小腿提供可控辅助力。',
+    steps: ['跪姿，搭档在后面按小腿', '慢速前倾（离心阶段）', '搭档根据需要提供辅助', '手撑地后推回'],
+    precautions: ['搭档用力固定小腿', '下放速度要慢', '搭档要专注安全'],
+    setsReps: '3-4组 × 3-6次',
+  },
+  {
+    id: 'sprinters-pushup', name: '短跑运动员俯卧撑', nameEn: "Sprinter's Push-Up",
+    category: 'strength', subCategory: '上肢专项',
+    targetMuscles: ['胸大肌', '肱三头肌', '核心', '髋屈肌'],
+    bodyRegion: '全身', equipment: '徒手', sprintPhase: '起跑/加速',
+    difficulty: '中级',
+    description: '俯卧撑+交替抬膝。模拟起跑时手臂支撑+腿部驱动的协同发力。',
+    steps: ['俯卧撑姿势', '俯卧撑推起后单腿快速抬膝到胸口', '腿回原位继续下个俯卧撑', '交替进行'],
+    precautions: ['核心稳定抬膝不扭转', '俯卧撑要标准', '节奏清晰'],
+    setsReps: '3组 × 8-12次',
+  },
 ]
 
 // ========== 分类系统 ==========
