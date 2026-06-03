@@ -264,6 +264,27 @@ export interface CapturedFrame {
   userNote: string       // 用户对截图的简单描述
 }
 
+// ========== 训练动作库 ==========
+
+export interface Exercise {
+  id: string
+  name: string
+  nameEn: string
+  category: 'strength' | 'power' | 'plyometric' | 'technique' | 'mobility' | 'core' | 'recovery'
+  subCategory: string
+  targetMuscles: string[]
+  bodyRegion: '臀腿髋' | '核心' | '上肢' | '全身' | '足踝' | '综合'
+  equipment: '徒手' | '杠铃' | '哑铃' | '弹力带' | '实心球' | '跳箱' | '雪橇' | '壶铃' | '其他'
+  sprintPhase: string
+  difficulty: '初级' | '中级' | '高级'
+  description: string
+  steps: string[]
+  precautions: string[]
+  setsReps: string
+}
+
+// ========== 视频分析 ==========
+
 export interface VideoAnalysisResult {
   overallAssessment: string     // 整体评估
   errors: {

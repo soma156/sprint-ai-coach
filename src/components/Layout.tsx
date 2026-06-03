@@ -4,6 +4,7 @@ import { Link, useLocation, Outlet } from 'react-router-dom'
 const navLinks = [
   { path: '/', label: '🏠 首页', icon: '🏠' },
   { path: '/video', label: '🎥 动作分析', icon: '🎥' },
+  { path: '/exercises', label: '📚 动作库', icon: '📚' },
   { path: '/log', label: '📝 训练日志', icon: '📝' },
   { path: '/stats', label: '📊 数据统计', icon: '📊' },
 ]

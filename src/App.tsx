@@ -6,6 +6,7 @@ import ResultPage from './pages/ResultPage'
 import LogPage from './pages/LogPage'
 import StatsPage from './pages/StatsPage'
 import VideoPage from './pages/VideoPage'
+import ExercisePage from './pages/ExercisePage'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/log" element={<LogPage />} />
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/video" element={<VideoPage />} />
+            <Route path="/exercises" element={<ExercisePage />} />
           </Route>
         </Routes>
       </BrowserRouter>
