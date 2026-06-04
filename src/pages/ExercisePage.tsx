@@ -171,13 +171,24 @@ export default function ExercisePage() {
             {/* 视频演示 */}
             <div className="bg-white/5 rounded-xl overflow-hidden">
               {selected.videoUrl ? (
-                <iframe src={selected.videoUrl} title={selected.name}
-                  className="w-full aspect-video" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+                selected.videoUrl.startsWith('//player') ? (
+                  <iframe src={selected.videoUrl} title={selected.name}
+                    className="w-full aspect-video" allowFullScreen />
+                ) : (
+                  <a href={selected.videoUrl} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 py-8 text-gray-300 hover:text-accent-light hover:bg-accent/5 transition-colors no-underline">
+                    <span className="text-4xl">▶</span>
+                    <div className="text-left">
+                      <p className="text-sm font-medium">点击观看「{selected.name}」视频演示</p>
+                      <p className="text-xs text-gray-600">在新窗口打开 Bilibili</p>
+                    </div>
+                  </a>
+                )
               ) : (
                 <a href={`https://search.bilibili.com/all?keyword=${encodeURIComponent(selected.name + ' 训练 教学')}`}
                   target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-8 text-gray-400 hover:text-accent-light hover:bg-accent/5 transition-colors no-underline">
-                  <span className="text-3xl">▶</span>
+                  className="flex items-center justify-center gap-3 py-8 text-gray-400 hover:text-accent-light hover:bg-accent/5 transition-colors no-underline">
+                  <span className="text-4xl">▶</span>
                   <div className="text-left">
                     <p className="text-sm font-medium">在 Bilibili 搜索「{selected.name}」</p>
                     <p className="text-xs text-gray-600">点击查看视频演示</p>

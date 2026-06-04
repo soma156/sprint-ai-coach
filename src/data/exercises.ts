@@ -29,6 +29,7 @@ export const exercises: Exercise[] = [
       '如有膝关节或腰背部伤病，先咨询教练',
     ],
     setsReps: '4-6组 × 3-6次，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'barbell-front-squat', name: '杠铃前蹲', nameEn: 'Barbell Front Squat',
@@ -46,6 +47,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['肘部抬高是关键，不能下垂', '手腕灵活性不足可用交叉握法', '建议从后蹲50%的重量开始学习'],
     setsReps: '3-5组 × 4-8次，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'barbell-half-squat', name: '杠铃半蹲', nameEn: 'Barbell Half Squat',
@@ -62,6 +64,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要蹲太深（超出短跑相关角度）', '重量可以比深蹲更大（约+20-30%）', '关注发力速度而非单纯重量'],
     setsReps: '4-5组 × 3-5次，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'barbell-rdl', name: '杠铃罗马尼亚硬拉', nameEn: 'Barbell RDL',
@@ -79,6 +82,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['保持背部平直！宁可少下一点也不要弓背', '膝盖不要锁死，保持15-20度微屈', '关注腘绳肌的拉伸感而非杠铃下放深度', '腘绳肌有伤病史的运动员从此动作开始康复'],
     setsReps: '3-4组 × 6-10次，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'barbell-hip-thrust', name: '杠铃臀推', nameEn: 'Barbell Hip Thrust',
@@ -96,6 +100,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['避免过度伸展腰椎（不要弓腰顶髋）', '下巴内收，目光前看', '如果腰部酸痛，减小动作幅度或减重'],
     setsReps: '3-4组 × 8-12次，组间休息 1.5-2分钟',
+    videoUrl: '',
   },
   {
     id: 'barbell-deadlift', name: '传统硬拉', nameEn: 'Conventional Deadlift',
@@ -113,6 +118,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['启动前必须收紧背部', '杠铃要贴着小腿上升（不远离身体）', '有腰背伤病史谨慎使用', '从轻重量建立完美动作模式'],
     setsReps: '3-5组 × 3-6次，组间休息 2-3分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -129,6 +135,7 @@ export const exercises: Exercise[] = [
     steps: ['后脚置于长凳上（鞋带面朝下）', '前脚在身体前方足够远', '躯干保持直立，下蹲至前大腿平行地面', '前脚全掌发力站起', '保持膝盖对齐脚尖（不前移过多）'],
     precautions: ['前脚位置：太近会增加膝盖压力', '后腿只起辅助平衡作用', '先徒手掌握平衡再加重量', '左右腿力量和稳定性差距要关注'],
     setsReps: '3-4组 × 8-12次/侧，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'walking-lunge', name: '负重行走弓步', nameEn: 'Weighted Walking Lunge',
@@ -140,6 +147,7 @@ export const exercises: Exercise[] = [
     steps: ['双手各持哑铃，挺胸直立', '前跨一大步，后膝几乎触地（不触地）', '前腿发力站起同时后腿前跨', '交替进行，保持躯干稳定不下沉'],
     precautions: ['步子足够大，前膝不超过脚尖', '后膝不要撞击地面', '保持上身直立，不向前倾', '如果膝盖不适，减小步幅'],
     setsReps: '3组 × 12-16步，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'single-leg-rdl', name: '单腿罗马尼亚硬拉', nameEn: 'Single-Leg RDL',
@@ -151,6 +159,7 @@ export const exercises: Exercise[] = [
     steps: ['单手持哑铃（对侧手），支撑腿微屈膝', '自由腿向后延伸，躯干前倾至与地面平行', '支撑腿腘绳肌和臀肌发力拉回直立位', '全程支撑脚稳定踩地，踝关节不晃动'],
     precautions: ['先徒手掌握平衡再负重', '支撑腿膝盖保持15-20度微屈', '不要追求深度，关注腘绳肌拉伸感', '如果站不稳，目视前方固定点'],
     setsReps: '3-4组 × 8-10次/侧，组间休息 1.5分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -178,6 +187,7 @@ export const exercises: Exercise[] = [
       '接杠时肘部要快，慢了手腕会被压到',
     ],
     setsReps: '4-6组 × 2-4次，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'trap-bar-jump', name: '六角杆蹲跳', nameEn: 'Trap Bar Jump Squat',
@@ -194,6 +204,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['落地要轻，屈膝缓冲', '重量不要太重（约体重的20-40%）', '如有膝关节问题慎用', '确保落地稳定，六角杆不晃动'],
     setsReps: '3-4组 × 4-6次，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'kettlebell-swing', name: '壶铃摆荡', nameEn: 'Kettlebell Swing',
@@ -211,6 +222,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['这是髋部铰链动作不是深蹲！膝盖只微屈', '发力来自臀部和腘绳肌，不是手臂', '壶铃摆动高度来自髋部爆发力', '保持核心收紧，不弓背'],
     setsReps: '3-4组 × 12-20次，组间休息 1-2分钟',
+    videoUrl: '',
   },
   {
     id: 'med-ball-chest-pass', name: '药球胸前推掷', nameEn: 'Medicine Ball Chest Throw',
@@ -227,6 +239,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['选择能弹回的药球（非软式）', '注意接球时手腕安全', '推掷要全力爆发，不要匀速推', '保持核心稳定不弓背'],
     setsReps: '3-4组 × 6-10次，组间休息 1.5分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -249,6 +262,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要跳下来！走下来保护跟腱', '选择的箱高不要超过能力范围', '落地要轻、要控制（不是重重砸上去）', '从低箱开始（30-45cm），逐步增加'],
     setsReps: '3-4组 × 4-8次，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'depth-jump', name: '跳深', nameEn: 'Depth Jump',
@@ -272,6 +286,7 @@ export const exercises: Exercise[] = [
       '膝关节或跟腱伤病禁止此训练',
     ],
     setsReps: '3-4组 × 4-6次，组间休息 3分钟',
+    videoUrl: '',
   },
   {
     id: 'bounding', name: '跨步跳', nameEn: 'Bounding',
@@ -289,6 +304,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['先充分热身，特别是跟腱和腓肠肌', '从短距离（20m）开始，逐步增加到40-60m', '每次触地后立即离开地面，不要"坐"下去', '草地上进行以减小冲击'],
     setsReps: '3-5组 × 20-40米，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'pogo-jump', name: '踝关节弹跳', nameEn: 'Pogo Jump / Ankle Hops',
@@ -306,6 +322,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['如果小腿前侧（胫骨前肌）酸痛，减量或休息', '每次训练量不宜过大（从50次开始）', '硬地面（跑道）比软地面效果好', '胫骨痛/小腿痛禁止此训练'],
     setsReps: '3-4组 × 15-30次，组间休息 1-2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -328,6 +345,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['抬膝高度先求标准（大腿平行地面）再求速度', '支撑腿要完全伸展（不要屈膝偷懒）', '手臂摆动与腿的动作协调', '保持头部中立位，目视前方'],
     setsReps: '3-4组 × 20-30米',
+    videoUrl: '',
   },
   {
     id: 'b-skip', name: 'B-Skip（B跳）', nameEn: 'B-Skip',
@@ -344,6 +362,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['先掌握A-Skip再学习B-Skip', '扒地要快、要主动（不要被动等着地）', '保持高重心，不要下沉', '动作频率由慢到快逐步提升'],
     setsReps: '3-4组 × 20-30米',
+    videoUrl: '',
   },
   {
     id: 'high-knees', name: '行进间高抬腿', nameEn: 'High Knees',
@@ -361,6 +380,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不是原地跑！要向前行进', '躯干直立，不前倾不后仰', '手臂摆动幅度要大（下巴到臀部后）', '脚前掌着地，不落脚跟'],
     setsReps: '3-4组 × 20-40米',
+    videoUrl: '',
   },
   {
     id: 'straight-leg-run', name: '直腿跑', nameEn: 'Straight Leg Run',
@@ -378,6 +398,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['膝盖确实要保持伸直（不是锁死）', '着地在重心正下方，不要前伸', '地面要有弹性（跑道优于硬地）', '如果跟腱不适立即停止'],
     setsReps: '3-4组 × 20-30米',
+    videoUrl: '',
   },
   {
     id: 'carioca', name: '交叉步跑', nameEn: 'Carioca',
@@ -395,6 +416,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['从慢速开始，逐步加快', '保持上半身稳定不晃动', '动作幅度由小到大', '注意场地平整避免崴脚'],
     setsReps: '2-3组 × 20-30米/方向',
+    videoUrl: '',
   },
   {
     id: 'fast-leg', name: '小步跑', nameEn: 'Fast Leg Drill',
@@ -412,6 +434,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要大步前进！目标是频率不是距离', '触地要轻、要弹（听声音：声小=弹性好）', '从5秒开始，逐步延长至10-15秒', '疲劳时动作质量下降即停止'],
     setsReps: '3-4组 × 5-15秒',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -434,6 +457,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要塌腰！这是最常见的错误', '不要抬头或低头（颈椎中立）', '从30秒开始逐步增加', '如果腰酸说明姿势不对，立即调整或停止'],
     setsReps: '3-4组 × 30-60秒',
+    videoUrl: '',
   },
   {
     id: 'dead-bug', name: '死虫式', nameEn: 'Dead Bug',
@@ -451,6 +475,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['如果下背部离开地面，减小动作幅度', '动作要慢、要控制，不要快', '呼吸配合：伸展时呼气，返回时吸气', '如果脖子紧张，用毛巾垫头'],
     setsReps: '3组 × 10-12次/侧',
+    videoUrl: '',
   },
   {
     id: 'pallof-press', name: '弹力带抗旋转推举', nameEn: 'Pallof Press',
@@ -468,6 +493,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['身体不能转动！核心的首要任务是稳定', '双手始终在胸口正前方', '如果身体开始旋转说明弹力带太重', '膝盖保持微屈减少腰椎压力'],
     setsReps: '3组 × 8-12次/侧',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -489,6 +515,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要靠身体摆动借力（除非做kipping）', '启动前先沉肩（激活背阔肌）', '做不了可以用弹力带辅助或做离心下降'],
     setsReps: '3-4组 × 最大次数（或8-12次负载）',
+    videoUrl: '',
   },
   {
     id: 'push-up', name: '俯卧撑', nameEn: 'Push Up',
@@ -505,6 +532,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['身体成一条直线（不塌腰、不拱臀）', '肘关节与身体约45度角（不外展90度）', '手腕不适可改用拳撑或俯卧撑架'],
     setsReps: '3-4组 × 最大次数（或15-25次）',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -527,6 +555,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['如果前膝不适，减小幅度', '不要弓背', '不要弹震式拉伸（静态保持）', '训练前做动态版（行进间），训练后做静态版'],
     setsReps: '每侧 2-3组 × 20-30秒',
+    videoUrl: '',
   },
   {
     id: 'world-greatest-stretch', name: '世界最伟大拉伸', nameEn: "World's Greatest Stretch",
@@ -544,6 +573,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['动作要流畅，不要急停急转', '胸椎旋转时骨盆保持不动', '全程控制呼吸，不憋气'],
     setsReps: '2组 × 5-6次/侧（热身时进行）',
+    videoUrl: '',
   },
   {
     id: 'ankle-dorsiflexion', name: '踝关节背屈活动度训练', nameEn: 'Ankle Dorsiflexion Mobilization',
@@ -561,6 +591,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['膝盖对齐第二三脚趾方向', '拉伸感应在跟腱和小腿后侧', '如果足底痛或跟腱刺痛立即停止', '训练前后都做效果最佳'],
     setsReps: '每侧 2-3组 × 10-15次',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -589,6 +620,7 @@ export const exercises: Exercise[] = [
       '腘绳肌伤后康复期从等长收缩开始，不要做此训练',
     ],
     setsReps: '3-4组 × 4-8次，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'glute-bridge-march', name: '臀桥交替抬腿', nameEn: 'Glute Bridge March',
@@ -605,6 +637,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['髋部不能下沉！这是核心要求', '如果感到腰酸说明臀肌没发力', '先练好静态臀桥再进入交替抬腿'],
     setsReps: '2-3组 × 12-20次/侧（训练前激活）',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -627,6 +660,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['弹力带不要太重（会影响动作质量）', '支撑腿站稳，稳定第一', '动作要快速爆发但还原要控制', '如有髋部弹响或疼痛立即停止'],
     setsReps: '3组 × 12-15次/侧',
+    videoUrl: '',
   },
   {
     id: 'band-monster-walk', name: '弹力带侧向行走', nameEn: 'Banded Monster Walk',
@@ -644,6 +678,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['保持蹲姿高度不变（不要上下浮动）', '脚趾朝前不旋转', '步幅适中就行（约20-30cm每步）', '如果膝盖内侧不适减小弹力带阻力'],
     setsReps: '3组 × 12-15步/方向',
+    videoUrl: '',
   },
   {
     id: 'sled-push', name: '雪橇推', nameEn: 'Sled Push',
@@ -661,6 +696,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['重量不要太大（约体重的20-50%）', '保持短跑动作模式不变形', '不要在疲劳时继续（动作变形增加受伤风险）', '从轻重量开始感受'],
     setsReps: '4-6组 × 10-30米，组间休息 2-3分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -683,6 +719,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要直接压在膝关节后方（胭窝）', '不要快速大力滚动', '压痛点停留时深呼吸帮助放松', '如淤青或明显疼痛立即停止'],
     setsReps: '每侧 1-2分钟，训练后进行',
+    videoUrl: '',
   },
   {
     id: 'foam-roll-quad', name: '泡沫轴股四头肌放松', nameEn: 'Foam Roll Quadriceps',
@@ -699,6 +736,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要直接压在膝盖骨上', '如果股四头肌有挫伤/淤青不要滚', '滚动的范围不要进入膝盖区域'],
     setsReps: '每侧 1-2分钟，训练后进行',
+    videoUrl: '',
   },
   {
     id: 'calf-stretch', name: '腓肠肌/比目鱼肌拉伸', nameEn: 'Calf Stretch (Gastroc + Soleus)',
@@ -716,6 +754,7 @@ export const exercises: Exercise[] = [
     ],
     precautions: ['不要弹震（静态保持）', '拉伸感在小腿后侧，不是脚底或跟腱', '如果跟腱刺痛立即停止并减小幅度'],
     setsReps: '每侧每式 2-3组 × 20-30秒',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -732,6 +771,7 @@ export const exercises: Exercise[] = [
     steps: ['杠铃置于斜方肌上（同深蹲），或使用提踵机', '双脚前掌站在台阶或垫块边缘', '尽可能高地提起脚后跟（跖屈）', '顶部停顿1秒，挤压小腿', '控制下降至脚后跟低于台阶平面（拉伸感）'],
     precautions: ['直膝主要练腓肠肌，屈膝主要练比目鱼肌', '动作幅度要完整（全范围跖屈+充分拉伸）', '不要弹震或借力', '跟腱炎急性期禁止负重提踵'],
     setsReps: '3-4组 × 12-20次，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'seated-calf-raise', name: '坐姿提踵', nameEn: 'Seated Calf Raise',
@@ -743,6 +783,7 @@ export const exercises: Exercise[] = [
     steps: ['坐姿，哑铃置于膝盖上方（用垫子保护）', '脚前掌踩在垫块上，膝盖约90度弯曲', '跖屈提起脚跟至最高点', '控制下降至低于水平面'],
     precautions: ['膝盖角度保持不变', '重量不要太大，关注肌肉感受', '如果膝盖前侧不适，调整哑铃位置'],
     setsReps: '3-4组 × 15-25次，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'single-leg-calf-raise', name: '单腿提踵', nameEn: 'Single-Leg Calf Raise',
@@ -754,6 +795,7 @@ export const exercises: Exercise[] = [
     steps: ['单腿站立，手扶墙保持平衡', '前脚掌发力提起身体至最高点', '顶部停顿，感受小腿收缩', '控制下降（3秒离心）', '从徒手开始，后期可手持哑铃加重'],
     precautions: ['先扶墙练平衡，熟练后放手', '控制下降速度比上提更重要', '如果踝关节不稳（常崴脚），重点练此动作'],
     setsReps: '3组 × 12-15次/侧 → 力竭，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'towel-scrunch', name: '毛巾抓趾训练', nameEn: 'Towel Scrunch / Toe Curls',
@@ -765,6 +807,7 @@ export const exercises: Exercise[] = [
     steps: ['坐姿，脚平踩在毛巾上', '用脚趾抓毛巾向自己方向拉', '保持脚后跟不动，只动脚趾', '抓满一把后重新铺平毛巾，重复'],
     precautions: ['脚趾抽筋是正常的！休息后继续', '每天都可以做，这是一个康复性训练', '如果足底筋膜炎急性期，从轻柔开始'],
     setsReps: '3组 × 抓满整条毛巾（或 30-60秒连续）',
+    videoUrl: '',
   },
   {
     id: 'ankle-alphabet', name: '踝关节字母训练', nameEn: 'Ankle Alphabet Drill',
@@ -776,6 +819,7 @@ export const exercises: Exercise[] = [
     steps: ['坐姿或仰卧，一腿抬起', '用脚趾在空中写出大写字母A到Z', '动作来自踝关节（不是膝盖或髋）', '每个字母要尽可能到达脚踝的最大活动范围', '左右脚各做一遍'],
     precautions: ['动作要慢、要控制（不是快速甩腿）', '如果某个方向的活动引起疼痛，减小幅度', '可以训练前做（激活）或训练后做（恢复）'],
     setsReps: '2组 × A到Z/侧',
+    videoUrl: '',
   },
   {
     id: 'tibialis-raise', name: '胫骨前肌提拉', nameEn: 'Tibialis Anterior Raise',
@@ -787,6 +831,7 @@ export const exercises: Exercise[] = [
     steps: ['背靠墙壁站立，脚后跟距墙约30cm', '脚后跟着地，脚前掌抬起（背屈）', '抬到最高点后控制下落', '可以单腿做以增加难度', '从自重开始，后期胫骨前肌上放轻哑铃'],
     precautions: ['如果小腿前侧（胫骨）疼痛，从最轻开始', '着地要控制，不要重重拍下去', '这可能加重胫骨应力综合征（急性期禁止）'],
     setsReps: '3组 × 15-25次/侧，组间休息 1分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -803,6 +848,7 @@ export const exercises: Exercise[] = [
     steps: ['单膝和同侧手撑在长凳上，另一只手持哑铃', '保持背部平直，肩胛骨先启动（不是手臂先拉）', '将哑铃拉至髋部旁，感受背阔肌收缩', '控制下降，肩胛骨不放松'],
     precautions: ['背要平！不要弓背', '避免身体旋转借力', '下拉时呼气，还原时吸气'],
     setsReps: '3-4组 × 8-12次/侧，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'band-pull-apart', name: '弹力带肩胛后收', nameEn: 'Band Pull-Apart',
@@ -814,6 +860,7 @@ export const exercises: Exercise[] = [
     steps: ['双手伸直前举，持弹力带（略宽于肩）', '保持手臂伸直，将弹力带拉向两侧（肩胛骨挤在一起）', '拉到弹力带触胸的位置', '控制回弹，不要突然松掉'],
     precautions: ['不要耸肩！肩胛骨向下向后收', '手臂保持伸直（微屈肘也可以）', '动作顶端保持1秒挤压', '弹力带不要太重，以感受肩胛骨活动为主'],
     setsReps: '3组 × 15-20次，组间休息 1分钟',
+    videoUrl: '',
   },
   {
     id: 'overhead-press', name: '哑铃推举', nameEn: 'Dumbbell Overhead Press',
@@ -825,6 +872,7 @@ export const exercises: Exercise[] = [
     steps: ['双脚与肩同宽站立，核心收紧', '双手持哑铃于肩部高度', '向上推举至手臂伸直（不锁死肘关节）', '控制下放至肩部，重复'],
     precautions: ['不要弓腰！核心收紧保护腰椎', '推举时不要耸肩（用腿部微蹬助力是借力推举，另一个动作）', '选择合适重量，确保全程控制'],
     setsReps: '3-4组 × 8-12次，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'arm-swing-drill', name: '摆臂技术训练', nameEn: 'Arm Swing Technique Drill',
@@ -836,6 +884,7 @@ export const exercises: Exercise[] = [
     steps: ['坐姿（双腿伸直在前）或站姿进行', '坐姿：双腿不动，只做手臂摆动', '手臂90度弯曲，前摆至下巴高度，后摆至手过臀部', '保持肩部放松，发力来自背部和肩部', '逐渐加速至最大速度'],
     precautions: ['手臂不要交叉过身体中线！这是最常见的错误', '肩部放松——紧张的肩膀会减慢摆臂速度', '手腕放松，手掌自然半握拳', '可以和镜子训练结合，目视检查动作'],
     setsReps: '3-4组 × 10-30秒快速摆臂',
+    videoUrl: '',
   },
   {
     id: 'dip', name: '双杠臂屈伸', nameEn: 'Parallel Bar Dip',
@@ -847,6 +896,7 @@ export const exercises: Exercise[] = [
     steps: ['双手撑在双杠上，手臂伸直', '身体下降至肩关节略低于肘关节', '爆发推起至手臂伸直', '保持身体稳定不晃动'],
     precautions: ['下降到太低会增加肩关节压力', '做不了可以用弹力带辅助', '如果肩关节不适（特别是肩峰撞击），减小活动范围'],
     setsReps: '3组 × 6-15次，组间休息 1.5-2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -863,6 +913,7 @@ export const exercises: Exercise[] = [
     steps: ['侧卧，前臂撑地，肘在肩正下方', '髋部抬起，身体成一条直线', '上侧手臂可放在髋部或指向天花板', '保持髋部不下沉'],
     precautions: ['髋部不要下沉！这是最常见的错误', '如果肩部不适，用下侧膝盖撑地减难度', '每侧保持相同时间，检测左右不平衡'],
     setsReps: '3组 × 20-45秒/侧',
+    videoUrl: '',
   },
   {
     id: 'bird-dog', name: '鸟狗式', nameEn: 'Bird Dog',
@@ -874,6 +925,7 @@ export const exercises: Exercise[] = [
     steps: ['四肢跪地（手在肩下，膝在髋下）', '同时伸展对侧手和腿（右手+左腿）', '保持身体稳定，骨盆不旋转或下沉', '在伸展位保持2-3秒后回到起始位', '换另一侧交替进行'],
     precautions: ['动作要慢、要控制！不是速度训练', '骨盆始终水平，不要向一侧倾斜', '如果下背疼痛，减小伸展幅度', '可以先只伸展腿（不伸手臂），逐步进阶'],
     setsReps: '3组 × 8-12次/侧',
+    videoUrl: '',
   },
   {
     id: 'hanging-knee-raise', name: '悬垂举膝', nameEn: 'Hanging Knee Raise',
@@ -885,6 +937,7 @@ export const exercises: Exercise[] = [
     steps: ['双手握住引体向上杠，身体悬垂', '膝盖向胸口方向抬起（越高越好）', '控制下放（不要自由落体）', '全程保持身体稳定，不晃动'],
     precautions: ['不要借力摆动！身体不能前后晃', '如果握力不够，用助力带', '下放要控制，不是甩下来', '可以在双杠上进行（支撑举腿），难度更低'],
     setsReps: '3-4组 × 8-15次，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'russian-twist', name: '俄罗斯转体', nameEn: 'Russian Twist',
@@ -896,6 +949,7 @@ export const exercises: Exercise[] = [
     steps: ['坐姿，身体后倾约45度，双脚离地（或脚跟着地）', '双手持药球或哑铃（也可以徒手）', '向一侧旋转躯干（不是只动手臂）', '回到中间后旋转到另一侧', '保持身体V形角度不变'],
     precautions: ['旋转来自胸椎和核心，不是只摆动手臂', '如果腰部不适，减小后倾角度，脚跟着地', '控制速度，不要用惯性'],
     setsReps: '3组 × 20-30次（左右各一次算一次）',
+    videoUrl: '',
   },
   {
     id: 'ab-wheel-rollout', name: '健腹轮/滑行盘前推', nameEn: 'Ab Wheel Rollout',
@@ -907,6 +961,7 @@ export const exercises: Exercise[] = [
     steps: ['跪姿，双手握健腹轮或放在滑行盘上', '缓慢向前推行，身体逐渐伸展', '推到你能控制的最远距离（腰椎不下塌）', '用核心力量将身体拉回起始位'],
     precautions: ['腰椎不能下塌！这是最重要的', '从短距离开始，逐步增加', '做不了的退阶：面对墙壁做（墙限制前推距离）', '腰痛者禁止此训练'],
     setsReps: '3-4组 × 6-10次，组间休息 2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -923,6 +978,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧，双脚踩在滑行盘或毛巾上（木地板/光滑地面）', '臀部抬起成臀桥姿势', '双腿缓慢向前滑出（离心阶段，约4-5秒）', '用腘绳肌发力将脚拉回（向心阶段）', '全程保持臀部不下沉'],
     precautions: ['臀部不能下沉！如果臀部下坠说明腘绳肌力量不足', '先从双腿开始，再进阶到单腿', '抽筋立即停止（腘绳肌容易抽筋）'],
     setsReps: '3-4组 × 6-10次，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'razor-curl', name: '北欧弯举辅助版（弹力带）', nameEn: 'Assisted Nordic Curl with Band',
@@ -934,6 +990,7 @@ export const exercises: Exercise[] = [
     steps: ['弹力带一端固定在前方高处，另一端套在胸前', '跪姿，脚踝固定', '弹力带提供向上的辅助力', '尽可能慢地向前倾倒（利用弹力带辅助控制下降）', '双手在必要时撑地'],
     precautions: ['弹力带越重=越容易=退阶版', '随力量增长逐渐换更轻的弹力带', '最终目标是去掉弹力带做完整的北欧弯举'],
     setsReps: '3-4组 × 4-6次，组间休息 2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -950,6 +1007,7 @@ export const exercises: Exercise[] = [
     steps: ['设置6-10个低栏架（20-40cm），间距60-90cm', '双脚同时起跳和着地，连续跳过每个栏架', '着地后立即跳起（触地时间最小化）', '保持节奏感，不要停顿', '手臂配合上摆助力'],
     precautions: ['栏架高度不要超过能力范围', '从2-3个栏架开始，逐步增加', '逐渐减小栏架间距以训练更快的触地转换', '疲劳时停止（动作变形增加受伤风险）'],
     setsReps: '3-5组 × 6-10栏，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'single-leg-box-jump', name: '单腿跳箱', nameEn: 'Single-Leg Box Jump',
@@ -961,6 +1019,7 @@ export const exercises: Exercise[] = [
     steps: ['面对低跳箱（20-40cm）单腿站立', '支撑腿快速下蹲后爆发跳上跳箱', '同一只脚着地在跳箱上', '走下来，换腿重复'],
     precautions: ['从低箱开始（20cm），安全第一', '不是所有人都能做！需要足够的单腿力量基础', '落地要控制，不要扭到膝盖', '膝关节伤病禁止此训练'],
     setsReps: '3组 × 3-5次/侧，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'broad-jump', name: '立定跳远（训练用）', nameEn: 'Standing Broad Jump',
@@ -972,6 +1031,7 @@ export const exercises: Exercise[] = [
     steps: ['双脚与肩同宽，脚尖在起跳线后', '手臂后摆，同时下蹲（约半蹲位）', '爆发性向前上方起跳，手臂前摆助力', '双脚同时着地，测量距离', '每次追求最大距离'],
     precautions: ['充分热身！这是极爆发性动作', '着地时屈膝缓冲（软着陆）', '测量从起跳线到着地最近点（脚后跟）的距离', '可以作为周期性测试追踪爆发力进步'],
     setsReps: '4-6次（追求质量而非数量）',
+    videoUrl: '',
   },
   {
     id: 'lateral-bound', name: '侧向跨步跳', nameEn: 'Lateral Bound',
@@ -983,6 +1043,7 @@ export const exercises: Exercise[] = [
     steps: ['单腿站立，向侧方跳出', '用对侧腿着地并立即向反方向跳出', '每次跳都要全力爆发，追求距离', '手臂配合摆动维持平衡', '保持上半身稳定'],
     precautions: ['从短距离开始，关注着地稳定性', '着地膝关节要稳定（不内扣）', '比较左右侧距离差距（不平衡需要单侧强化）'],
     setsReps: '3组 × 6-10次/方向',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -999,6 +1060,7 @@ export const exercises: Exercise[] = [
     steps: ['慢速前进，类似A-Skip但抬膝同时向外画C形', '膝盖从外侧抬起的轨迹像一个C字母', '回到中间后进入下一步', '保持躯干稳定'],
     precautions: ['先掌握A-Skip再学习C-Skip', '动作幅度不要过大（髋关节弹响立即停止）'],
     setsReps: '3-4组 × 20-30米',
+    videoUrl: '',
   },
   {
     id: 'falling-start', name: '前倾起跑练习', nameEn: 'Falling Start Drill',
@@ -1010,6 +1072,7 @@ export const exercises: Exercise[] = [
     steps: ['双脚并拢站立，身体笔直', '缓慢前倾（像要摔倒一样），脚跟不离地', '在前倾到无法保持平衡的瞬间，爆发性迈出第一步', '立即进入全力加速模式', '跑10-20米'],
     precautions: ['第一步要快、要爆发！不是走步', '迈步方向要向前（不要向上跳）', '第一步的脚前掌着地', '草地上练习以减小摔倒恐惧'],
     setsReps: '4-6组 × 10-20米',
+    videoUrl: '',
   },
   {
     id: 'block-start-practice', name: '起跑器爆发练习', nameEn: 'Block Start Explosive Practice',
@@ -1021,6 +1084,7 @@ export const exercises: Exercise[] = [
     steps: ['调整起跑器：前脚距起跑线约2脚长，后脚约3脚长', '各就位：双手与肩同宽撑地，后膝着地', '预备：抬起臀部至略高于肩，重心前移', '鸣枪（或自我口令）：双手离地，双腿爆发蹬伸', '第一步快速落地（不要跨大步！）', '保持前倾角度跑出20-30米'],
     precautions: ['第一步不要跨太大——快速短步启动！', '髋部不要抬太高或太低（略高于肩）', '前倾角度要保持（不要像站直了跑）', '前几步视线看跑道（不要抬头过早）'],
     setsReps: '5-8组 × 10-30米，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'straight-leg-bound', name: '直腿跨步跳', nameEn: 'Straight Leg Bound',
@@ -1032,6 +1096,7 @@ export const exercises: Exercise[] = [
     steps: ['膝盖保持伸直（或微屈5-10度）', '只用脚前掌和踝关节发力推进', '着地要快、要弹', '手臂配合摆动', '前进距离20-30米'],
     precautions: ['不是跑步！每一个着地都要有弹跳感', '如果跟腱不适立即停止', '从10米开始，逐渐增加距离'],
     setsReps: '3-4组 × 20-30米',
+    videoUrl: '',
   },
   {
     id: 'sprint-arm-isolation', name: '坐姿摆臂加速训练', nameEn: 'Seated Arm Sprint Drill',
@@ -1043,6 +1108,7 @@ export const exercises: Exercise[] = [
     steps: ['坐在地上，双腿向前伸直（或微屈膝坐凳子边缘）', '手臂90度弯曲，模拟跑步摆臂', '前后摆臂（不交叉中线），追求最大频率', '从慢到快，逐渐加速至极限', '计时10-20秒'],
     precautions: ['手臂绝对不能交叉过中线！', '肩部放松，力量来自肩胛和背部', '可以用轻哑铃（1-2kg）增加阻力'],
     setsReps: '3-4组 × 10-20秒',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1059,6 +1125,7 @@ export const exercises: Exercise[] = [
     steps: ['四肢跪地', '吸气：拱背向上，头下垂（猫式）', '呼气：沉腰向下，头抬起（牛式）', '逐节活动脊柱，感受每节椎骨的运动', '动作缓慢流畅'],
     precautions: ['不要过度活动颈椎（颈部放松）', '动作要慢，不是弹震', '如果腰痛，减小活动幅度'],
     setsReps: '2组 × 8-12次',
+    videoUrl: '',
   },
   {
     id: 'thoracic-rotation', name: '胸椎旋转活动度', nameEn: 'Thoracic Spine Rotation',
@@ -1070,6 +1137,7 @@ export const exercises: Exercise[] = [
     steps: ['侧卧，髋膝弯曲90度，双手前伸合十', '上侧手缓慢向后旋转打开（像翻书一样）', '眼睛跟随手移动', '保持骨盆和下肢不动（只有胸椎旋转）', '到达最大幅度后回到起始位'],
     precautions: ['骨盆不能翻过去！用下侧腿压住', '如果肩关节不适，减小幅度', '对比左右侧旋转幅度差距'],
     setsReps: '每侧 2组 × 8-10次',
+    videoUrl: '',
   },
   {
     id: 'frog-stretch', name: '青蛙式腹股沟拉伸', nameEn: 'Frog Stretch / Adductor Stretch',
@@ -1081,6 +1149,7 @@ export const exercises: Exercise[] = [
     steps: ['四肢跪地，双膝尽可能分开', '脚内侧着地，膝盖向外打开', '臀部向后推（朝脚后跟方向）', '感受腹股沟区域的拉伸', '保持呼吸放松'],
     precautions: ['如果有腹股沟拉伤史，要格外轻柔', '不要弹震', '如果膝盖不适，在膝下垫软垫'],
     setsReps: '2-3组 × 30-45秒',
+    videoUrl: '',
   },
   {
     id: 'dynamic-hamstring-sweep', name: '行进间腘绳肌扫腿', nameEn: 'Walking Hamstring Sweep',
@@ -1092,6 +1161,7 @@ export const exercises: Exercise[] = [
     steps: ['慢速行走', '前腿伸直，脚后跟着地，脚趾朝上', '身体前倾，双手沿前腿向下扫（像要摸脚尖）', '感受腘绳肌的拉伸', '站起后换腿继续'],
     precautions: ['膝盖不要锁死（保持微屈）', '不要弹震！控制幅度', '如果腘绳肌有伤病史，减小前倾幅度'],
     setsReps: '2组 × 10-12步/侧',
+    videoUrl: '',
   },
   {
     id: 'pigeon-stretch', name: '鸽子式臀肌拉伸', nameEn: 'Pigeon Pose / Figure-4 Stretch',
@@ -1103,6 +1173,7 @@ export const exercises: Exercise[] = [
     steps: ['从下犬式或四肢跪地开始', '一腿的膝盖向前放（小腿横向），脚踝在身体前方', '后腿向后伸直', '身体前倾（加深拉伸）', '保持30-60秒'],
     precautions: ['如果膝盖（前腿）有不适，在膝下垫毛巾', '拉伸感应在臀部后外侧', '如果刺痛（非拉伸感）立即停止'],
     setsReps: '每侧 2-3组 × 30-60秒',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1119,6 +1190,7 @@ export const exercises: Exercise[] = [
     steps: ['侧卧，弹力带套在膝盖上方', '膝盖弯曲约45度，脚并拢', '上侧膝盖向上打开（像蚌壳张开）', '保持脚并拢不动', '顶部停顿1秒后控制合拢'],
     precautions: ['骨盆不准翻！身体不能向后转动', '感受在臀部侧上方（不是大腿）', '如果感觉在大腿外侧，调整膝盖角度'],
     setsReps: '3组 × 15-20次/侧（训练前激活）',
+    videoUrl: '',
   },
   {
     id: 'band-glute-bridge', name: '弹力带臀桥', nameEn: 'Banded Glute Bridge',
@@ -1130,6 +1202,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧，弹力带套在膝盖上方', '膝盖弯曲，双脚平踩地面（与髋同宽）', '膝盖向外对抗弹力带阻力', '同时臀部发力向上顶起', '顶部保持膝盖向外推（不内扣）'],
     precautions: ['膝盖始终保持向外推（对抗弹力带）', '如果腰部酸痛，减小顶髋高度', '先练常规臀桥再进阶'],
     setsReps: '3组 × 15-20次',
+    videoUrl: '',
   },
   {
     id: 'band-sprint', name: '弹力带抗阻冲刺', nameEn: 'Band Resisted Sprint',
@@ -1141,6 +1214,7 @@ export const exercises: Exercise[] = [
     steps: ['弹力带套在髋部（用腰带保护），搭档在后拉住', '从站立或三点起跑姿势出发', '克服弹力带阻力全速加速', '跑10-20米后搭档松手（释放加速）', '继续跑10米感受无阻力加速'],
     precautions: ['弹力带阻力不要太大（不能改变跑步姿态）', '搭档松手时要安全（不要绊倒）', '如果姿态变形（过度前倾/后仰），阻力太大', '不能在最高速度阶段用（只用于加速阶段）'],
     setsReps: '4-6组 × 10-20米，组间休息 2-3分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1157,6 +1231,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧，泡沫轴置于上背部（肩胛骨下方）', '双手交叉抱头，支撑颈部', '臀部抬起，缓慢上下滚动', '重点放松肩胛骨之间的区域', '到达压痛点后保持30秒'],
     precautions: ['不要滚到腰椎区域！（只滚上背和中背）', '不要直接压在脊椎骨上（旋转身体偏向一侧）', '如果手臂发麻，立即停止'],
     setsReps: '1-2分钟',
+    videoUrl: '',
   },
   {
     id: 'pnf-hamstring', name: 'PNF腘绳肌拉伸', nameEn: 'PNF Hamstring Stretch',
@@ -1168,6 +1243,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧，弹力带套在前脚掌上', '弹力带将腿拉至伸直抬高（直到腘绳肌有拉伸感）', '保持此位置，腘绳肌等长收缩对抗弹力带5-6秒（用力向下压）', '放松，在放松瞬间将腿拉至更高的角度', '保持新角度15-20秒，重复2-3轮'],
     precautions: ['不要在极度拉伸位置做收缩（先到中等拉伸感位置）', '收缩阶段不要太用力（约30-50%最大力）', '腘绳肌急性损伤期禁止'],
     setsReps: '每侧 2-3轮',
+    videoUrl: '',
   },
   {
     id: 'diaphragm-breathing', name: '腹式呼吸训练', nameEn: 'Diaphragmatic Breathing',
@@ -1179,6 +1255,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧，膝盖弯曲，一只手放在胸口，一只手放在腹部', '用鼻子缓慢吸气（4秒），感受腹部上升（胸口不动）', '屏息2秒', '用嘴缓慢呼气（6-8秒），感受腹部下沉', '重复5-10分钟'],
     precautions: ['胸口不能动！如果胸口上升说明在用胸式呼吸', '呼气时间要长于吸气时间（激活副交感神经）', '可以睡前做，帮助入睡'],
     setsReps: '5-10分钟（或睡前进行）',
+    videoUrl: '',
   },
   {
     id: 'self-massage-achilles', name: '跟腱/小腿自我按摩', nameEn: 'Self Massage - Achilles/Calf',
@@ -1190,6 +1267,7 @@ export const exercises: Exercise[] = [
     steps: ['坐姿，一腿跨在另一腿上（4字坐姿）', '用拇指或按摩球从脚后跟沿跟腱向小腿上方按压', '找到紧张的结节（按下去有酸胀感的点）', '每个结节按压15-30秒（中等力度，不要过度）', '沿小腿后侧中线从下往上按摩'],
     precautions: ['不要直接大力按跟腱！跟腱周围轻柔按压即可', '如果小腿有血栓风险（长途飞行等），不要按摩', '按摩后多喝水帮助代谢产物排出', '急性跟腱炎不要按摩'],
     setsReps: '每侧 3-5分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1206,6 +1284,7 @@ export const exercises: Exercise[] = [
     steps: ['双手持哑铃一端于胸前（像抱高脚杯）', '肘部在膝盖内侧（帮助保持躯干直立）', '双脚与肩同宽，下蹲至大腿平行地面', '肘部轻轻推膝盖外侧（保持膝盖对齐脚尖）', '站起时保持胸前哑铃不落下'],
     precautions: ['如果腰椎弓起，先减轻重量', '可以在脚后跟垫片（帮助踝关节活动度不足的人达到深蹲深度）', '从轻哑铃开始，动作质量>重量'],
     setsReps: '3-4组 × 8-15次，组间休息 1.5-2分钟',
+    videoUrl: '',
   },
   {
     id: 'reverse-lunge', name: '反向弓步', nameEn: 'Reverse Lunge',
@@ -1217,6 +1296,7 @@ export const exercises: Exercise[] = [
     steps: ['双脚与髋同宽，双手持哑铃于身体两侧', '一腿向后跨一大步，后膝接近地面但不触地', '前腿小腿保持垂直（膝盖不超过脚尖）', '前腿发力推回起始位置', '交替双腿进行'],
     precautions: ['前膝盖不要前移（保持垂直）', '躯干保持直立', '后膝不要撞击地面', '如果膝盖不适，减小步幅'],
     setsReps: '3-4组 × 8-12次/侧，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'trap-bar-deadlift', name: '六角杠硬拉', nameEn: 'Trap Bar Deadlift',
@@ -1228,6 +1308,7 @@ export const exercises: Exercise[] = [
     steps: ['站在六角杠中央，双脚与肩同宽', '屈髋屈膝，双手握住两侧把手', '挺胸、沉肩、核心收紧', '双腿蹬地发力站起（不要先抬臀部）', '锁定后控制下放'],
     precautions: ['与直杠硬拉相比：下背压力更小', '可以有更直立的躯干角度', '非常适合硬拉新手和腰背有伤病史的运动员'],
     setsReps: '3-5组 × 3-6次，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'weighted-glute-bridge', name: '负重臀桥', nameEn: 'Weighted Glute Bridge',
@@ -1239,6 +1320,7 @@ export const exercises: Exercise[] = [
     steps: ['坐在地上，上背靠在长凳边缘', '杠铃置于髋部（用护垫保护）', '双脚平踩，臀大肌发力顶起髋部', '顶部挤压臀大肌1-2秒', '控制下放不触地'],
     precautions: ['杠铃一定要用护垫！直接压在髋骨上很痛', '不要用腰椎过度伸展代偿（臀肌发力为主）', '下巴内收（头不要后仰）'],
     setsReps: '3-4组 × 8-15次，组间休息 1.5-2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1255,6 +1337,7 @@ export const exercises: Exercise[] = [
     steps: ['从悬垂位开始（杠铃在大腿中段或膝盖上方）', '微屈膝，躯干直立', '爆发性伸髋伸膝（三倍伸展）', '杠铃沿身体上抛，肘部快速翻到杠铃下接杠', '站直完成'],
     precautions: ['悬垂高翻比完整高翻技术门槛低，仍是高级动作', '杠铃必须贴身（擦着大腿上升）', '肘部要快！慢肘会导致手腕受压'],
     setsReps: '4-5组 × 3-5次，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'med-ball-slam', name: '药球下砸', nameEn: 'Medicine Ball Slam',
@@ -1266,6 +1349,7 @@ export const exercises: Exercise[] = [
     steps: ['双脚与肩同宽，双手持药球举过头顶', '踮脚尖，身体完全伸展', '爆发性将药球砸向地面（正前方）', '球触地弹起后接住，立即进行下一次'],
     precautions: ['药球要能弹起的（不要太软）', '肘关节微屈（不锁死）', '发力来自腹部，不是只靠手臂', '注意地面（不要在硬地上砸太软的球）'],
     setsReps: '3-4组 × 6-10次，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'dumbbell-snatch', name: '哑铃抓举', nameEn: 'Dumbbell Snatch',
@@ -1277,6 +1361,7 @@ export const exercises: Exercise[] = [
     steps: ['单手持哑铃置于双脚之间地面', '起始姿势类似单臂硬拉', '腿部爆发伸展，将哑铃向上抛起', '顺势下蹲，手臂锁定在头顶位置', '站直完成，换手重复'],
     precautions: ['从轻哑铃开始学习技术', '哑铃轨迹是垂直向上的（不是向前抛）', '下蹲接哑铃时保持背部挺直', '手腕和肩部必须充分热身'],
     setsReps: '3-4组 × 4-6次/侧，组间休息 2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1293,6 +1378,7 @@ export const exercises: Exercise[] = [
     steps: ['双手各持哑铃置于身体两侧', '双脚与肩同宽，下蹲至大腿平行地面', '保持躯干直立，站起时哑铃贴近身体'],
     precautions: ['哑铃不要撞到膝盖', '重量不够可进阶单腿深蹲', '保持手腕中立'],
     setsReps: '3-4组 × 8-15次，组间休息 1.5-2分钟',
+    videoUrl: '',
   },
   {
     id: 'dumbbell-rdl', name: '哑铃罗马尼亚硬拉', nameEn: 'Dumbbell RDL',
@@ -1304,6 +1390,7 @@ export const exercises: Exercise[] = [
     steps: ['双手持哑铃置于大腿前', '膝盖微屈全程不变', '臀部后推，哑铃沿腿下滑', '腘绳肌拉伸后臀部发力回直立位'],
     precautions: ['哑铃贴近身体', '背部平直', '感受腘绳肌拉伸优先'],
     setsReps: '3-4组 × 8-12次，组间休息 1.5-2分钟',
+    videoUrl: '',
   },
   {
     id: 'dumbbell-step-up', name: '哑铃登阶', nameEn: 'Dumbbell Step-Up',
@@ -1315,6 +1402,7 @@ export const exercises: Exercise[] = [
     steps: ['双手持哑铃，面对膝高度的跳箱', '一脚完全踩在箱上', '该腿发力蹬上箱（不靠后腿推蹬）', '控制下放'],
     precautions: ['发力腿是箱上的腿', '箱高约膝盖高度', '控制下放不自由落体'],
     setsReps: '3-4组 × 8-12次/侧，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'dumbbell-lateral-raise', name: '哑铃侧平举', nameEn: 'Dumbbell Lateral Raise',
@@ -1326,6 +1414,7 @@ export const exercises: Exercise[] = [
     steps: ['双手持轻哑铃于体侧', '微屈肘抬臂至肩高度', '控制下放', '不借力摆动'],
     precautions: ['小重量训练！', '不耸肩', '身体不摆动'],
     setsReps: '3组 × 12-20次，组间休息 1分钟',
+    videoUrl: '',
   },
   {
     id: 'dumbbell-bicep-curl', name: '哑铃弯举', nameEn: 'Dumbbell Bicep Curl',
@@ -1337,6 +1426,7 @@ export const exercises: Exercise[] = [
     steps: ['站姿持哑铃，肘部固定体侧', '弯举至肩', '顶峰收缩后控制下放'],
     precautions: ['肘部固定不摆动', '控制离心阶段', '手腕中立'],
     setsReps: '3组 × 10-15次，组间休息 1分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1353,6 +1443,7 @@ export const exercises: Exercise[] = [
     steps: ['双手握壶铃手柄两端，置于胸前', '肘部在膝盖之间，下蹲至大腿平行地面', '肘部轻推膝盖帮助膝盖对齐脚尖'],
     precautions: ['壶铃贴胸', '不低头看壶铃', '从轻壶铃开始'],
     setsReps: '3-4组 × 8-15次，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'kettlebell-single-leg-rdl', name: '壶铃单腿硬拉', nameEn: 'Kettlebell Single-Leg RDL',
@@ -1364,6 +1455,7 @@ export const exercises: Exercise[] = [
     steps: ['单手持壶铃，单腿站立', '自由腿后伸，躯干前倾至平行地面', '支撑腿腘绳肌发力拉回直立'],
     precautions: ['先徒手掌握平衡', '支撑膝微屈15-20度', '对侧手持壶铃更容易平衡'],
     setsReps: '3-4组 × 8-10次/侧，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'kettlebell-clean', name: '壶铃高翻', nameEn: 'Kettlebell Clean',
@@ -1375,6 +1467,7 @@ export const exercises: Exercise[] = [
     steps: ['壶铃置于双脚间，屈髋握壶铃', '爆发伸髋，壶铃沿身体上拉', '肘部快速翻转，壶铃落于前臂和胸口间', '站直完成'],
     precautions: ['翻转时手腕要快（避免砸到手腕）', '从轻壶铃开始', '在教练指导下学习'],
     setsReps: '3-4组 × 5-8次/侧，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'turkish-getup', name: '土耳其起立', nameEn: 'Turkish Get-Up',
@@ -1386,6 +1479,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧右手持壶铃伸直向天花板', '左臂45度撑地', '各步骤依次过渡：仰卧→坐姿→跪姿→站姿→再逆向返回'],
     precautions: ['持壶铃手臂全程伸直锁定！', '眼睛看壶铃保持平衡', '每步稳定再进入下一步', '从极轻或无负重开始'],
     setsReps: '每侧 3-5次（强调质量）',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1402,6 +1496,7 @@ export const exercises: Exercise[] = [
     steps: ['侧身对墙，双手持球于身体一侧', '向远离墙方向旋转蓄力', '爆发性向墙旋转掷球', '接弹回球立即下一次'],
     precautions: ['旋转来自髋和核心', '膝盖稳定不扭', '左右侧都练'],
     setsReps: '3组 × 6-8次/侧，组间休息 1.5分钟',
+    videoUrl: '',
   },
   {
     id: 'med-ball-overhead-throw', name: '药球过顶前抛', nameEn: 'Medicine Ball Overhead Forward Throw',
@@ -1413,6 +1508,7 @@ export const exercises: Exercise[] = [
     steps: ['持药球举过头顶', '微屈膝，球在头后', '踮脚+伸膝+躯干前屈+手臂前甩依次爆发', '全力向前上方45度抛掷'],
     precautions: ['发力顺序不能反', '每次全力爆发', '球出手后身体自然跟进'],
     setsReps: '3-4组 × 5-8次，组间休息 2分钟',
+    videoUrl: '',
   },
   {
     id: 'med-ball-scoop-toss', name: '药球抄底上抛', nameEn: 'Medicine Ball Scoop Toss',
@@ -1424,6 +1520,7 @@ export const exercises: Exercise[] = [
     steps: ['双手持球置于双腿之间深蹲位', '爆发伸髋伸膝将球前上方抛出', '手臂完全伸展', '尽可能高远'],
     precautions: ['不要只用手臂！发力来自髋膝', '球轨迹是前上方45度', '深蹲要够深'],
     setsReps: '3-4组 × 5-8次，组间休息 2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1440,6 +1537,7 @@ export const exercises: Exercise[] = [
     steps: ['坐在箱/凳上面对跳箱', '不预摆，直接爆发跳上跳箱', '双脚同时着地缓冲'],
     precautions: ['不要预摆', '前箱从低开始', '起跳时膝角约120度最佳'],
     setsReps: '3-4组 × 3-6次，组间休息 2-3分钟',
+    videoUrl: '',
   },
   {
     id: 'lateral-box-jump', name: '侧向跳箱', nameEn: 'Lateral Box Jump',
@@ -1451,6 +1549,7 @@ export const exercises: Exercise[] = [
     steps: ['侧身站跳箱旁', '快速屈膝侧向跳上跳箱', '双脚同时着地缓冲', '左右交替'],
     precautions: ['从低箱开始', '比较左右发力差距', '落地控制好'],
     setsReps: '3组 × 4-6次/侧，组间休息 2分钟',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1467,6 +1566,7 @@ export const exercises: Exercise[] = [
     steps: ['面对雪橇双手拉带子', '后退行走，控制身体', '步伐均匀持续拖行20-40m'],
     precautions: ['康复性训练不求重量', '小步后退', '髌腱不适从极轻开始'],
     setsReps: '3-4组 × 20-40米',
+    videoUrl: '',
   },
   {
     id: 'sled-drag-forward', name: '雪橇前向拖行', nameEn: 'Forward Sled Drag',
@@ -1478,6 +1578,7 @@ export const exercises: Exercise[] = [
     steps: ['背对雪橇拉带子或套腰上', '身体前倾向前行进', '每步后腿蹬伸推进'],
     precautions: ['保持前倾不站直', '从轻重量开始', '可与推雪橇交替'],
     setsReps: '3-4组 × 20-40米',
+    videoUrl: '',
   },
   {
     id: 'sled-lateral-drag', name: '雪橇侧向拖行', nameEn: 'Lateral Sled Drag',
@@ -1489,6 +1590,7 @@ export const exercises: Exercise[] = [
     steps: ['侧身对雪橇拉带子', '侧向行走远离雪橇', '每步侧向蹬伸', '换方向重复'],
     precautions: ['膝盖对齐脚尖', '小步侧移', '从极轻开始'],
     setsReps: '3组 × 20-30米/方向',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1505,6 +1607,7 @@ export const exercises: Exercise[] = [
     steps: ['弹力带固定身后低位套脚踝', '站姿扶墙', '快速抬膝至大腿平行地面', '控制还原'],
     precautions: ['弹力带不要太重', '支撑腿站稳', '躯干不后仰'],
     setsReps: '3组 × 12-15次/侧',
+    videoUrl: '',
   },
   {
     id: 'band-knee-drive', name: '弹力带冲刺抬膝', nameEn: 'Band Sprint Knee Drive',
@@ -1516,6 +1619,7 @@ export const exercises: Exercise[] = [
     steps: ['弹力带固定身后套腰或脚踝', '快速交替抬膝像高抬腿', '持续10-20秒最大频率'],
     precautions: ['阻力不能影响频率', '抬膝高度优先于速度', '身体不太前倾'],
     setsReps: '3-4组 × 10-20秒',
+    videoUrl: '',
   },
   {
     id: 'band-x-walk', name: '弹力带X型侧向行走', nameEn: 'Banded X-Walk',
@@ -1527,6 +1631,7 @@ export const exercises: Exercise[] = [
     steps: ['弹力带交叉套双脚踝（X型）', '微蹲侧向行走', '保持弹力带时刻绷紧'],
     precautions: ['髋部不高低浮', '膝盖对齐脚尖', '弹力带松了说明步太小'],
     setsReps: '3组 × 10-15步/方向',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1543,6 +1648,7 @@ export const exercises: Exercise[] = [
     steps: ['退阶1：坐到箱/凳上再站起', '退阶2：扶墙辅助', '退阶3：双手前伸平衡', '退阶4：双手抱胸（最难）', '自由腿始终伸直前举'],
     precautions: ['需要极好踝背屈活动度', '从退阶开始', '不追求速度', '多数运动员需退阶版本'],
     setsReps: '每侧 3组 × 3-5次（或退阶 8-12次）',
+    videoUrl: '',
   },
   {
     id: 'single-leg-glute-bridge', name: '单腿臀桥', nameEn: 'Single-Leg Glute Bridge',
@@ -1554,6 +1660,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧单腿踩地，另腿伸直抬离', '支撑腿臀肌发力顶髋', '保持髋部水平不下沉', '顶部挤压臀肌'],
     precautions: ['髋部必须水平', '腘绳肌抽筋减小幅度', '比较两侧差异'],
     setsReps: '3组 × 12-20次/侧',
+    videoUrl: '',
   },
   {
     id: 'mountain-climber', name: '登山者', nameEn: 'Mountain Climbers',
@@ -1565,6 +1672,7 @@ export const exercises: Exercise[] = [
     steps: ['俯卧撑姿势身体成直线', '快速交替膝盖向胸口', '上半身稳定不晃', '持续20-30秒'],
     precautions: ['臀部不过高', '膝盖向胸口不向外', '核心稳定优先于速度'],
     setsReps: '3组 × 20-45秒',
+    videoUrl: '',
   },
   {
     id: 'inverted-row', name: '反向划船', nameEn: 'Inverted Row',
@@ -1576,6 +1684,7 @@ export const exercises: Exercise[] = [
     steps: ['仰卧在低杠下方握杠', '身体成直线脚跟着地', '背部发力拉至胸口触杠', '控制下放'],
     precautions: ['身体保持平直', '先夹背再屈肘', '握距不同刺激不同'],
     setsReps: '3-4组 × 8-15次',
+    videoUrl: '',
   },
 
   // ==========================================
@@ -1592,6 +1701,7 @@ export const exercises: Exercise[] = [
     steps: ['双手各持战绳一端', '微蹲核心收紧', '双臂交替快速下砸', '产生波浪', '持续15-30秒'],
     precautions: ['发力来自肩和核心', '肩伤谨慎', '从短时间开始'],
     setsReps: '3-4组 × 15-30秒',
+    videoUrl: '',
   },
   {
     id: 'battle-rope-slam-double', name: '战绳双砸', nameEn: 'Battle Rope Double Slam',
@@ -1603,6 +1713,7 @@ export const exercises: Exercise[] = [
     steps: ['持战绳两端', '踮脚尖举绳过头（完全伸展）', '爆发下蹲+手臂下砸', '利用弹性进行下一次'],
     precautions: ['发力顺序：脚→髋→肩→手', '每次全力', '不是耐力训练'],
     setsReps: '3-4组 × 8-12次',
+    videoUrl: '',
   },
   {
     id: 'partner-hamstring-fall', name: '搭档腘绳肌离心训练', nameEn: 'Partner Hamstring Fall',
@@ -1614,6 +1725,7 @@ export const exercises: Exercise[] = [
     steps: ['跪姿，搭档在后面按小腿', '慢速前倾（离心阶段）', '搭档根据需要提供辅助', '手撑地后推回'],
     precautions: ['搭档用力固定小腿', '下放速度要慢', '搭档要专注安全'],
     setsReps: '3-4组 × 3-6次',
+    videoUrl: '',
   },
   {
     id: 'sprinters-pushup', name: '短跑运动员俯卧撑', nameEn: "Sprinter's Push-Up",
@@ -1625,6 +1737,7 @@ export const exercises: Exercise[] = [
     steps: ['俯卧撑姿势', '俯卧撑推起后单腿快速抬膝到胸口', '腿回原位继续下个俯卧撑', '交替进行'],
     precautions: ['核心稳定抬膝不扭转', '俯卧撑要标准', '节奏清晰'],
     setsReps: '3组 × 8-12次',
+    videoUrl: '',
   },
 ]
 
