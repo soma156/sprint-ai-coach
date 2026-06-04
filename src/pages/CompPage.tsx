@@ -68,12 +68,13 @@ export default function CompPage() {
     try { return JSON.parse(localStorage.getItem('comp-interested') || '[]') } catch { return [] }
   })
   const [rankingEvent, setRankingEvent] = useState('男子100m')
-  const [liveData, setLiveData] = useState<{ source: string; updated: string; data: unknown } | null>(null)
+  const [aggregated, setAggregated] = useState<{ searchLinks?: Array<{platform:string;icon:string;url:string;description:string}>; news?: Array<{platform:string;icon:string;title:string;url:string;description:string}>; rssFeeds?: Array<{source:string;title:string;link:string;pubDate:string}>; rankings?: {seasonLeaders:Record<string,Array<{name:string;nation:string;mark:string;date:string}>>;source:string} | null } | null>(null)
 
   useEffect(() => {
-    fetch('https://sprint-ai-coach.vercel.app/api/fetch-competitions')
+    // 拉取聚合数据
+    fetch('https://sprint-ai-coach.vercel.app/api/aggregator?q=短跑&type=all')
       .then(r => r.json())
-      .then(d => { if (d.source !== 'error') setLiveData(d) })
+      .then(d => { if (!d.error) setAggregated(d) })
       .catch(() => {})
   }, [])
 
@@ -112,13 +113,6 @@ export default function CompPage() {
     <div className="max-w-5xl mx-auto py-4 space-y-6">
       <h1 className="text-2xl font-bold">🏟️ 田径赛事中心</h1>
 
-      {/* 数据源状态 */}
-      {liveData && (
-        <div className="bg-green-500/10 border border-green-500/20 rounded-lg px-4 py-2 text-xs text-green-400 flex items-center gap-2">
-          <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-          实时数据已连接 · 更新于 {new Date(liveData.updated).toLocaleString('zh-CN')}
-        </div>
-      )}
 
       {/* Tab 切换 */}
       <div className="flex border-b border-white/10">
@@ -262,6 +256,81 @@ export default function CompPage() {
 
       {tab === 'stars' && (
         <AthleteStars />
+      )}
+
+      {/* 多平台聚合区 */}
+      {aggregated && (
+        <div className="mt-8 pt-6 border-t border-white/10 space-y-6">
+          <h2 className="text-lg font-bold text-white">🌐 多平台信息聚合</h2>
+
+          {/* WA 实时排名 */}
+          {aggregated.rankings?.seasonLeaders && Object.keys(aggregated.rankings.seasonLeaders).length > 0 && (
+            <div className="bg-green-500/5 border border-green-500/20 rounded-xl p-5">
+              <h3 className="text-sm font-semibold text-green-400 mb-3">📊 实时赛季排名 · {aggregated.rankings.source}</h3>
+              {Object.entries(aggregated.rankings.seasonLeaders).map(([event, athletes]) => (
+                <div key={event} className="mb-3">
+                  <p className="text-xs text-gray-500 mb-2">{event}</p>
+                  {athletes.slice(0, 5).map((a, i) => (
+                    <div key={i} className="flex justify-between text-sm py-0.5">
+                      <span className="text-gray-300">{a.name} <span className="text-gray-600 text-xs">{a.nation}</span></span>
+                      <span className="text-white font-mono">{a.mark}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* 跨平台搜索链接 */}
+          {aggregated.searchLinks && aggregated.searchLinks.length > 0 && (
+            <div className="bg-white/[0.02] border border-white/5 rounded-xl p-5">
+              <h3 className="text-sm font-semibold text-white mb-3">🔍 跨平台信息搜索</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {aggregated.searchLinks.map(s => (
+                  <a key={s.platform} href={s.url} target="_blank" rel="noopener noreferrer"
+                    className="flex flex-col items-center gap-1 p-3 bg-white/[0.02] border border-white/5 rounded-lg hover:border-accent/30 transition-colors no-underline text-center">
+                    <span className="text-xl">{s.icon}</span>
+                    <span className="text-xs text-gray-300">{s.platform}</span>
+                    <span className="text-xs text-gray-600">{s.description}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 新闻来源 */}
+          {aggregated.news && aggregated.news.length > 0 && (
+            <div className="bg-white/[0.02] border border-white/5 rounded-xl p-5">
+              <h3 className="text-sm font-semibold text-white mb-3">📰 新闻与官方渠道</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {aggregated.news.map(n => (
+                  <a key={n.platform} href={n.url} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 bg-white/[0.02] border border-white/5 rounded-lg hover:border-accent/30 transition-colors no-underline">
+                    <span className="text-lg shrink-0">{n.icon}</span>
+                    <div>
+                      <span className="text-sm text-gray-200 block">{n.title}</span>
+                      <span className="text-xs text-gray-600">{n.platform} · {n.description}</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* RSS Feed */}
+          {aggregated.rssFeeds && aggregated.rssFeeds.length > 0 && (
+            <div className="bg-white/[0.02] border border-white/5 rounded-xl p-5">
+              <h3 className="text-sm font-semibold text-white mb-3">📡 RSS 最新消息</h3>
+              {aggregated.rssFeeds.map((item, i) => (
+                <a key={i} href={item.link} target="_blank" rel="noopener noreferrer"
+                  className="block py-1.5 border-b border-white/5 last:border-0 text-sm text-gray-300 hover:text-accent-light no-underline">
+                  <span className="text-xs text-gray-600 mr-2">[{item.source}]</span>
+                  {item.title}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
       )}
     </div>
   )
