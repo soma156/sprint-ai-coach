@@ -313,6 +313,17 @@ export interface NutritionSupplement {
   priority: '必须' | '推荐' | '可选'
 }
 
+export interface FoodItem {
+  id: string
+  name: string
+  category: '主食' | '肉类' | '蛋奶' | '豆制品' | '蔬菜' | '水果' | '坚果' | '饮品' | '补剂' | '调料'
+  serving: string
+  calories: number
+  protein: number
+  carbs: number
+  fat: number
+}
+
 export interface HydrationGuide {
   daily: string
   preTraining: string

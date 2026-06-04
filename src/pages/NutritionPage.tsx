@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { calculateNutrition, type TrainingPhase, PHASE_OPTIONS } from '../utils/nutrition'
+import { foods, FOOD_CATEGORIES } from '../data/foods'
 
 export default function NutritionPage() {
   const [weight, setWeight] = useState(70)
@@ -156,6 +157,98 @@ export default function NutritionPage() {
           ))}
         </div>
       </div>
+
+      {/* 食物营养参考表 */}
+      <FoodTable />
+    </div>
+  )
+}
+
+function FoodTable() {
+  const [search, setSearch] = useState('')
+  const [cat, setCat] = useState('全部')
+
+  const filtered = useMemo(() => {
+    return foods.filter(f => {
+      if (cat !== '全部' && f.category !== cat) return false
+      if (search && !f.name.includes(search)) return false
+      return true
+    })
+  }, [search, cat])
+
+  // 总计
+  const totals = useMemo(() => {
+    return filtered.reduce((t, f) => ({
+      cal: t.cal + f.calories,
+      pro: t.pro + f.protein,
+      carb: t.carb + f.carbs,
+      fat: t.fat + f.fat,
+    }), { cal: 0, pro: 0, carb: 0, fat: 0 })
+  }, [filtered])
+
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-5">
+      <h2 className="text-lg font-semibold text-white mb-2">📋 食物营养参考表</h2>
+      <p className="text-gray-500 text-xs mb-4">了解常见食物的营养成分，帮助科学选择饮食</p>
+
+      {/* 搜索 & 分类 */}
+      <div className="flex gap-3 mb-4 flex-wrap">
+        <input type="text" value={search} onChange={e => setSearch(e.target.value)}
+          placeholder="搜索食物名称..." className="flex-1 min-w-[150px] bg-white/[0.03] border border-white/5 px-4 py-2 text-white text-sm focus:outline-none focus:border-accent/50" />
+        <div className="flex gap-1 flex-wrap">
+          {FOOD_CATEGORIES.map(c => (
+            <button key={c.value} onClick={() => setCat(c.value)}
+              className={`px-2 py-1 text-xs tracking-wider transition-colors ${cat === c.value ? 'bg-accent/20 text-accent-light border border-accent/30' : 'bg-transparent border border-white/5 text-gray-500 hover:border-white/10'}`}>
+              {c.icon} {c.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 表格 */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-white/10 text-gray-500 text-xs tracking-wider">
+              <th className="text-left py-2 pr-4">食物</th>
+              <th className="text-left py-2 pr-4">份量</th>
+              <th className="text-right py-2 px-2">热量</th>
+              <th className="text-right py-2 px-2">蛋白质</th>
+              <th className="text-right py-2 px-2">碳水</th>
+              <th className="text-right py-2 px-2">脂肪</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map(f => (
+              <tr key={f.id} className="border-b border-white/5 hover:bg-white/[0.02]">
+                <td className="py-2 pr-4 text-gray-300">{f.name}</td>
+                <td className="py-2 pr-4 text-gray-500 text-xs">{f.serving}</td>
+                <td className="py-2 px-2 text-right text-gray-300">{f.calories}</td>
+                <td className="py-2 px-2 text-right text-red-400">{f.protein}g</td>
+                <td className="py-2 px-2 text-right text-yellow-400">{f.carbs}g</td>
+                <td className="py-2 px-2 text-right text-blue-400">{f.fat}g</td>
+              </tr>
+            ))}
+          </tbody>
+          {/* 合计行 */}
+          {filtered.length > 1 && (
+            <tfoot>
+              <tr className="border-t-2 border-white/20 font-mono text-xs">
+                <td className="py-2 text-gray-400">合计（{filtered.length}项）</td>
+                <td></td>
+                <td className="py-2 text-right text-white font-bold">{totals.cal}</td>
+                <td className="py-2 text-right text-red-300 font-bold">{totals.pro.toFixed(1)}g</td>
+                <td className="py-2 text-right text-yellow-300 font-bold">{totals.carb.toFixed(1)}g</td>
+                <td className="py-2 text-right text-blue-300 font-bold">{totals.fat.toFixed(1)}g</td>
+              </tr>
+            </tfoot>
+          )}
+        </table>
+      </div>
+
+      {filtered.length === 0 && (
+        <p className="text-gray-600 text-sm text-center py-8">没有匹配的食物</p>
+      )}
     </div>
   )
 }
