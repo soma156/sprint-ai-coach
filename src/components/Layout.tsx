@@ -58,7 +58,7 @@ export default function Layout() {
 
       {/* 底部 */}
       <footer className="bg-black/30 border-t border-white/10 py-4 text-center text-gray-500 text-sm">
-        <p>🏃 Sprint AI Coach — AI短跑训练计划生成器</p>
+        <p>🏃 Sprint AI Coach — AI短跑训练平台</p>
         <p className="text-xs mt-1">基于运动训练学原理 · 仅供训练参考</p>
       </footer>
     </div>

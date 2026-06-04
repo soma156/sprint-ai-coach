@@ -127,7 +127,7 @@ export default function FormStep() {
     <div className="max-w-3xl mx-auto">
       {/* 标题 */}
       <div className="text-center mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-2">🏃 AI短跑训练计划生成器</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">🏃 Sprint AI Coach</h1>
         <p className="text-gray-400 text-sm">Sprint AI Coach — 专业运动员评估系统</p>
       </div>
 
