@@ -4,7 +4,7 @@ import { INJURY_BODY_PARTS, SEVERITY_OPTIONS } from '../../constants'
 
 interface Props { data: UserFormData; onChange: (u: Partial<UserFormData>) => void }
 
-const inputC = "w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-accent transition-colors text-sm"
+const inputC = "w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent/50 transition-all"
 const labelC = "block text-sm font-medium text-gray-300 mb-1"
 const btnC = "px-3 py-1.5 rounded-lg border text-xs transition-colors bg-white/10 border-white/20 text-gray-300 hover:bg-white/20"
 

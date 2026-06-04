@@ -1,47 +1,43 @@
 import { Link, useLocation, Outlet } from 'react-router-dom'
 
-// 导航链接数据
 const navLinks = [
-  { path: '/', label: '🏠 首页', icon: '🏠' },
-  { path: '/video', label: '🎥 动作分析', icon: '🎥' },
-  { path: '/exercises', label: '📚 动作库', icon: '📚' },
-  { path: '/nutrition', label: '🍽️ 营养', icon: '🍽️' },
-  { path: '/log', label: '📝 训练日志', icon: '📝' },
-  { path: '/stats', label: '📊 数据统计', icon: '📊' },
+  { path: '/', label: '评估', icon: '▣' },
+  { path: '/video', label: '视频分析', icon: '▶' },
+  { path: '/exercises', label: '动作库', icon: '⊞' },
+  { path: '/nutrition', label: '营养', icon: '◎' },
+  { path: '/log', label: '日志', icon: '◉' },
+  { path: '/stats', label: '统计', icon: '⊡' },
 ]
 
 export default function Layout() {
   const location = useLocation()
 
   return (
-    <div className="min-h-screen bg-primary-900 flex flex-col">
-      {/* 顶部导航栏 */}
-      <header className="bg-black/50 border-b border-white/10 sticky top-0 z-50 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 no-underline">
-            <span className="text-2xl">🏃</span>
-            <span className="text-white font-bold text-lg hidden sm:inline">
-              Sprint AI Coach
+    <div className="min-h-screen flex flex-col" style={{ background: '#0d0d18' }}>
+      {/* 顶部导航 — 极简实验室风格 */}
+      <header className="sticky top-0 z-50 border-b border-white/5" style={{ background: 'rgba(13,13,24,0.92)', backdropFilter: 'blur(12px)' }}>
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3 no-underline group">
+            <span className="text-sm tracking-[0.2em] text-gray-300 font-heading group-hover:text-accent-light transition-colors">
+              SPRINT AI COACH
             </span>
           </Link>
 
-          {/* 导航链接 */}
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-0">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors no-underline
+                  className={`px-3 py-1.5 text-xs tracking-wider no-underline transition-colors
                     ${isActive
-                      ? 'bg-accent text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-white/10'
+                      ? 'text-accent-light border-b border-accent'
+                      : 'text-gray-500 hover:text-gray-300'
                     }`}
                 >
-                  <span className="sm:hidden">{link.icon}</span>
                   <span className="hidden sm:inline">{link.label}</span>
+                  <span className="sm:hidden text-base">{link.icon}</span>
                 </Link>
               )
             })}
@@ -49,17 +45,15 @@ export default function Layout() {
         </div>
       </header>
 
-      {/* 页面内容区域 */}
       <main className="flex-1">
-        <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="max-w-7xl mx-auto px-6 py-8">
           <Outlet />
         </div>
       </main>
 
-      {/* 底部 */}
-      <footer className="bg-black/30 border-t border-white/10 py-4 text-center text-gray-500 text-sm">
-        <p>🏃 Sprint AI Coach — AI短跑训练平台</p>
-        <p className="text-xs mt-1">基于运动训练学原理 · 仅供训练参考</p>
+      <footer className="border-t border-white/5 py-6 text-center" style={{ background: '#0a0a14' }}>
+        <p className="text-gray-600 text-xs tracking-wider">SPRINT AI COACH</p>
+        <p className="text-gray-700 text-xs mt-1">运动科学实验室 · 仅供训练参考</p>
       </footer>
     </div>
   )

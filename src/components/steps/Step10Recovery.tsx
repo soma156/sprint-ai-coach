@@ -3,7 +3,7 @@ import { FATIGUE_OPTIONS, STRESS_OPTIONS, RATING_OPTIONS, RECOVERY_FEEL_OPTIONS,
 
 interface Props { data: UserFormData; onChange: (u: Partial<UserFormData>) => void }
 
-const inputC = "w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-accent transition-colors"
+const inputC = "w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent/50 transition-all"
 const labelC = "block text-sm font-medium text-gray-300 mb-1.5"
 const btnC = (sel: boolean) => `px-3 py-2 rounded-lg border text-sm transition-colors ${sel ? 'bg-accent border-accent text-white' : 'bg-white/10 border-white/20 text-gray-300 hover:bg-white/20'}`
 

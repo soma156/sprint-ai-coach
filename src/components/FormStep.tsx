@@ -125,29 +125,35 @@ export default function FormStep() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      {/* 标题 */}
-      <div className="text-center mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-2">🏃 Sprint AI Coach</h1>
-        <p className="text-gray-400 text-sm">Sprint AI Coach — 专业运动员评估系统</p>
+      {/* 标题 — 科研论文风格 */}
+      <div className="text-center mb-8">
+        <p className="text-xs tracking-[0.3em] text-gray-600 uppercase mb-2">Athlete Assessment System</p>
+        <h1 className="text-3xl sm:text-4xl font-heading font-bold text-white mb-2 tracking-tight">
+          Sprint AI Coach
+        </h1>
+        <p className="text-gray-500 text-sm">运动生物力学评估 · 个性化训练方案生成</p>
+        <div className="sci-divider" />
       </div>
 
-      {/* 进度条 */}
-      <div className="mb-6 overflow-x-auto">
-        <div className="flex gap-1 min-w-max pb-2">
+      {/* 进度条 — 实验室步骤指示器 */}
+      <div className="mb-8">
+        <div className="flex gap-1 overflow-x-auto pb-2">
           {FORM_STEPS.map((s, i) => (
             <button key={s.key} onClick={() => goTo(i)}
-              className={`shrink-0 flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors
-                ${i === currentStep ? 'bg-accent text-white' :
-                  i < currentStep ? 'bg-green-500/20 text-green-400' :
-                  'bg-white/5 text-gray-500 hover:text-gray-300'}`}>
-              <span>{i < currentStep ? '✅' : s.icon}</span>
-              <span className="hidden sm:inline">{s.num}. {s.title}</span>
+              className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-xs tracking-wider transition-all
+                ${i === currentStep
+                  ? 'bg-accent/20 text-accent-light border border-accent/40'
+                  : i < currentStep
+                  ? 'bg-green-500/10 text-green-400/70 border border-green-500/20'
+                  : 'bg-transparent text-gray-600 border border-white/5 hover:border-white/10 hover:text-gray-400'
+                }`}>
+              <span className="font-mono text-xs">{String(i + 1).padStart(2, '0')}</span>
+              <span className="hidden sm:inline">{s.title}</span>
             </button>
           ))}
         </div>
-        {/* 进度线 */}
-        <div className="h-1 bg-white/10 rounded-full mt-1">
-          <div className="h-full bg-accent rounded-full transition-all duration-300"
+        <div className="h-px bg-white/5 mt-3">
+          <div className="h-px bg-accent transition-all duration-500"
             style={{ width: `${((currentStep + 1) / FORM_STEPS.length) * 100}%` }} />
         </div>
       </div>
@@ -159,10 +165,10 @@ export default function FormStep() {
         </div>
       )}
 
-      {/* 当前步骤标题 */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-5 mb-4">
-        <h2 className="text-lg font-semibold text-white mb-4">
-          {FORM_STEPS[currentStep].icon} 步骤 {currentStep + 1}/10：{FORM_STEPS[currentStep].title}
+      {/* 当前步骤 */}
+      <div className="sci-card p-6 mb-6">
+        <h2 className="text-sm tracking-[0.15em] text-gray-500 uppercase mb-5 font-heading">
+          {FORM_STEPS[currentStep].icon} Step {currentStep + 1}/10 — {FORM_STEPS[currentStep].title}
         </h2>
         <CurrentComponent data={form} onChange={handleChange} />
       </div>
@@ -197,19 +203,18 @@ export default function FormStep() {
       {/* 导航按钮 */}
       <div className="flex gap-3 justify-between">
         <button onClick={prev} disabled={currentStep === 0}
-          className="px-5 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-gray-300 hover:bg-white/20 disabled:opacity-30 transition-colors">
-          ← 上一步
+          className="px-5 py-2.5 border border-white/5 text-sm text-gray-500 hover:text-gray-300 hover:border-white/10 disabled:opacity-20 transition-all tracking-wider">
+          ← PREV
         </button>
-
         {isLastStep ? (
           <button onClick={handleSubmit}
-            className="px-8 py-2.5 bg-accent hover:bg-accent-dark text-white font-bold rounded-lg transition-all">
-            🚀 生成训练计划
+            className="px-10 py-3 bg-accent text-white text-sm tracking-widest hover:bg-accent-dark transition-all">
+            GENERATE PLAN
           </button>
         ) : (
           <button onClick={next}
-            className="px-5 py-2.5 bg-accent hover:bg-accent-dark text-white font-medium rounded-lg transition-all">
-            下一步 →
+            className="px-5 py-2.5 border border-accent/30 text-accent-light text-sm tracking-wider hover:bg-accent/10 transition-all">
+            NEXT →
           </button>
         )}
       </div>
