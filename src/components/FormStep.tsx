@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { UserFormData, FormStep } from '../types'
 import { FORM_STEPS } from '../types'
@@ -59,6 +59,32 @@ export default function FormStep() {
   const [captchaInput, setCaptchaInput] = useState('')
   const [adminKey, setAdminKey] = useState('')
   const [showAdmin, setShowAdmin] = useState(false)
+  const [saved, setSaved] = useState(false)
+
+  // 从 localStorage 恢复之前填写的表单数据
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('sprint-form-data')
+      if (saved) {
+        const parsed = JSON.parse(saved) as UserFormData
+        setForm(parsed)
+        setSaved(true)
+        setTimeout(() => setSaved(false), 2000)
+      }
+    } catch {}
+  }, [])
+
+  // 自动保存到 localStorage（表单变化时）
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  function autoSave(updates: Partial<UserFormData>) {
+    const newForm = { ...form, ...updates }
+    setForm(newForm)
+    setErrors([])
+    if (saveTimer.current) clearTimeout(saveTimer.current)
+    saveTimer.current = setTimeout(() => {
+      localStorage.setItem('sprint-form-data', JSON.stringify(newForm))
+    }, 500) // 500ms 防抖
+  }
 
   // 浏览器本地生成验证码（不需要请求服务器）
   function loadCaptcha() {
@@ -80,7 +106,12 @@ export default function FormStep() {
   const CurrentComponent = STEP_COMPONENTS[FORM_STEPS[currentStep].key]
 
   function handleChange(updates: Partial<UserFormData>) {
-    setForm(prev => ({ ...prev, ...updates }))
+    autoSave(updates)
+  }
+
+  function clearSavedData() {
+    localStorage.removeItem('sprint-form-data')
+    setForm(INITIAL_FORM)
     setErrors([])
   }
 
@@ -132,6 +163,13 @@ export default function FormStep() {
           Sprint AI Coach
         </h1>
         <p className="text-gray-500 text-sm">运动生物力学评估 · 个性化训练方案生成</p>
+        {saved && (
+          <p className="text-green-400/60 text-xs mt-2 tracking-wider">◉ 已恢复上次填写的数据</p>
+        )}
+        <button onClick={clearSavedData}
+          className="text-gray-600 hover:text-red-400 text-xs mt-2 tracking-wider transition-colors">
+          清除已保存数据
+        </button>
         <div className="sci-divider" />
       </div>
 
