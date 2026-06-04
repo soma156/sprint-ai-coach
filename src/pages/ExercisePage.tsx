@@ -168,6 +168,24 @@ export default function ExercisePage() {
               <span className="text-sm text-gray-300">{selected.targetMuscles.join('、')}</span>
             </div>
 
+            {/* 视频演示 */}
+            <div className="bg-white/5 rounded-xl overflow-hidden">
+              {selected.videoUrl ? (
+                <iframe src={selected.videoUrl} title={selected.name}
+                  className="w-full aspect-video" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+              ) : (
+                <a href={`https://search.bilibili.com/all?keyword=${encodeURIComponent(selected.name + ' 训练 教学')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-8 text-gray-400 hover:text-accent-light hover:bg-accent/5 transition-colors no-underline">
+                  <span className="text-3xl">▶</span>
+                  <div className="text-left">
+                    <p className="text-sm font-medium">在 Bilibili 搜索「{selected.name}」</p>
+                    <p className="text-xs text-gray-600">点击查看视频演示</p>
+                  </div>
+                </a>
+              )}
+            </div>
+
             {/* 动作讲解 */}
             <div>
               <h3 className="text-accent font-semibold mb-2">📖 动作讲解</h3>

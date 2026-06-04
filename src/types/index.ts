@@ -282,6 +282,7 @@ export interface Exercise {
   precautions: string[]
   setsReps: string
   imageUrl?: string
+  videoUrl?: string
 }
 
 // ========== 营养建议 ==========
