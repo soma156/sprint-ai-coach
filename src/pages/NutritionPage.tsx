@@ -18,7 +18,7 @@ export default function NutritionPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm text-gray-400 mb-1">体重（kg）</label>
-            <input type="number" value={weight} onChange={e => setWeight(+e.target.value)}
+            <input type="number" value={weight || ''} onChange={e => setWeight(e.target.value === '' ? 0 : +e.target.value)}
               className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-accent" />
           </div>
           <div>
