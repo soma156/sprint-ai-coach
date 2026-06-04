@@ -68,6 +68,14 @@ export default function CompPage() {
     try { return JSON.parse(localStorage.getItem('comp-interested') || '[]') } catch { return [] }
   })
   const [rankingEvent, setRankingEvent] = useState('男子100m')
+  const [liveData, setLiveData] = useState<{ source: string; updated: string; data: unknown } | null>(null)
+
+  useEffect(() => {
+    fetch('https://sprint-ai-coach.vercel.app/api/fetch-competitions')
+      .then(r => r.json())
+      .then(d => { if (d.source !== 'error') setLiveData(d) })
+      .catch(() => {})
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('comp-interested', JSON.stringify(interested))
@@ -103,6 +111,14 @@ export default function CompPage() {
   return (
     <div className="max-w-5xl mx-auto py-4 space-y-6">
       <h1 className="text-2xl font-bold">🏟️ 田径赛事中心</h1>
+
+      {/* 数据源状态 */}
+      {liveData && (
+        <div className="bg-green-500/10 border border-green-500/20 rounded-lg px-4 py-2 text-xs text-green-400 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+          实时数据已连接 · 更新于 {new Date(liveData.updated).toLocaleString('zh-CN')}
+        </div>
+      )}
 
       {/* Tab 切换 */}
       <div className="flex border-b border-white/10">
