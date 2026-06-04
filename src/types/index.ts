@@ -313,6 +313,20 @@ export interface NutritionSupplement {
   priority: '必须' | '推荐' | '可选'
 }
 
+export interface Competition {
+  id: string
+  name: string
+  nameEn: string
+  date: string
+  location: string
+  country: string
+  level: '国际顶级' | '钻石联赛' | '洲际' | '全国' | '区域/街头赛'
+  category: '短跑' | '跨栏' | '中长跑' | '跳跃' | '投掷' | '全能' | '接力' | '综合'
+  events: string
+  website?: string
+  description: string
+}
+
 export interface FoodItem {
   id: string
   name: string

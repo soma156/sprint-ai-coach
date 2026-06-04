@@ -8,6 +8,7 @@ import StatsPage from './pages/StatsPage'
 import VideoPage from './pages/VideoPage'
 import ExercisePage from './pages/ExercisePage'
 import NutritionPage from './pages/NutritionPage'
+import CompPage from './pages/CompPage'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/video" element={<VideoPage />} />
             <Route path="/exercises" element={<ExercisePage />} />
             <Route path="/nutrition" element={<NutritionPage />} />
+            <Route path="/competitions" element={<CompPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

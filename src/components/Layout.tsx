@@ -4,6 +4,7 @@ const navLinks = [
   { path: '/', label: '评估', icon: '▣' },
   { path: '/video', label: '视频分析', icon: '▶' },
   { path: '/exercises', label: '动作库', icon: '⊞' },
+  { path: '/competitions', label: '赛事', icon: '▣' },
   { path: '/nutrition', label: '营养', icon: '◎' },
   { path: '/log', label: '日志', icon: '◉' },
   { path: '/stats', label: '统计', icon: '⊡' },
