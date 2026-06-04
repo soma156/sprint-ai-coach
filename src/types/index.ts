@@ -284,6 +284,41 @@ export interface Exercise {
   imageUrl?: string
 }
 
+// ========== 营养建议 ==========
+
+export interface NutritionPlan {
+  dailyCalories: number
+  protein: { grams: number; kcal: number; percent: number }
+  carbs: { grams: number; kcal: number; percent: number }
+  fat: { grams: number; kcal: number; percent: number }
+  meals: NutritionMeal[]
+  supplements: NutritionSupplement[]
+  hydration: HydrationGuide
+  timingAdvice: string[]
+}
+
+export interface NutritionMeal {
+  name: string
+  time: string
+  foods: string[]
+  notes: string
+}
+
+export interface NutritionSupplement {
+  name: string
+  dosage: string
+  timing: string
+  benefit: string
+  priority: '必须' | '推荐' | '可选'
+}
+
+export interface HydrationGuide {
+  daily: string
+  preTraining: string
+  duringTraining: string
+  postTraining: string
+}
+
 // ========== 视频分析 ==========
 
 export interface VideoAnalysisResult {
