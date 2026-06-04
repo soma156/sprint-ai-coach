@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
 import { competitions, LEVEL_OPTIONS, MONTH_OPTIONS } from '../data/competitions'
+import { deepDives, type CompDeepDive } from '../data/comp-details'
 import type { Competition } from '../types'
 
 const LEVEL_COLORS: Record<Competition['level'], string> = {
@@ -183,22 +184,7 @@ export default function CompPage() {
                 </div>
                 <p className="text-gray-400 text-xs">{c.description}</p>
 
-                {open && (
-                  <div className="space-y-4 mt-4 pt-4 border-t border-white/5">
-                    <div>
-                      <h4 className="text-sm font-semibold text-white mb-2">🏷️ 比赛项目</h4>
-                      <div className="flex flex-wrap gap-1">
-                        {c.events.split('/').map(e => <span key={e} className="text-xs bg-white/5 text-gray-400 px-2 py-1">{e}</span>)}
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-3">
-                      <a href={`https://search.bilibili.com/all?keyword=${encodeURIComponent(c.name + ' 田径')}`} target="_blank" rel="noopener noreferrer"
-                        className="text-sm text-accent-light hover:underline">▶ B站搜索比赛视频</a>
-                      <a href="https://worldathletics.org/competitions" target="_blank" rel="noopener noreferrer"
-                        className="text-sm text-gray-500 hover:text-gray-300">🌐 World Athletics 官方</a>
-                    </div>
-                  </div>
-                )}
+                {open && <CompDetail c={c} deep={deepDives[c.id]} />}
               </div>
             )})}
           </div>
@@ -337,6 +323,119 @@ export default function CompPage() {
 }
 
 // ⭐ 明星运动员资料
+function CompDetail({ c, deep }: { c: Competition; deep?: CompDeepDive }) {
+  return (
+    <div className="space-y-5 mt-4 pt-4 border-t border-white/5">
+      {/* 比赛项目 */}
+      <div>
+        <h4 className="text-xs tracking-wider text-gray-500 mb-2">比赛项目</h4>
+        <div className="flex flex-wrap gap-1">
+          {c.events.split('/').map(e => <span key={e} className="text-xs bg-white/5 text-gray-400 px-2 py-1">{e}</span>)}
+        </div>
+      </div>
+
+      {deep ? (
+        <>
+          {/* 为什么重要 */}
+          <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4">
+            <h4 className="text-sm font-semibold text-amber-400 mb-2">🔥 为什么这场比赛很重要</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">{deep.whyMatters}</p>
+          </div>
+
+          {/* 历史 + 历届冠军 */}
+          <div>
+            <h4 className="text-xs tracking-wider text-gray-500 mb-2">历届男子100m冠军</h4>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="text-gray-500 border-b border-white/5">
+                    <th className="text-left py-1 pr-3">年份</th>
+                    <th className="text-left py-1 pr-3">冠军</th>
+                    <th className="text-right py-1 pr-3">成绩</th>
+                    <th className="text-left py-1">备注</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {deep.pastWinners.map((w,i) => (
+                    <tr key={i} className="border-b border-white/5">
+                      <td className="py-1 pr-3 text-gray-500">{w.year}</td>
+                      <td className="py-1 pr-3 text-gray-200">{w.winner}</td>
+                      <td className="py-1 pr-3 text-right text-accent-light font-mono">{w.mark}</td>
+                      <td className="py-1 text-gray-500">{w.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* 关键对决 */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-3">⚔️ 关键对决</h4>
+            {deep.keyMatchups.map((m, i) => (
+              <div key={i} className="bg-white/[0.02] border border-white/10 rounded-lg p-4 mb-3 last:mb-0">
+                <h5 className="text-accent-light font-medium text-sm mb-1">{m.title}</h5>
+                <p className="text-gray-400 text-sm leading-relaxed">{m.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* 中国选手 */}
+          <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-4">
+            <h4 className="text-sm font-semibold text-red-400 mb-2">🇨🇳 中国选手</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">{deep.chineseConnection}</p>
+          </div>
+
+          {/* 纪录参考 */}
+          <div>
+            <h4 className="text-xs tracking-wider text-gray-500 mb-2">纪录参考</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {deep.records.map((r,i) => (
+                <div key={i} className="bg-white/[0.02] border border-white/5 rounded-lg px-3 py-2 flex justify-between items-center text-xs">
+                  <span className="text-gray-400">{r.event}</span>
+                  <span className="text-white font-mono">{r.record} <span className="text-gray-600">({r.holder} {r.year})</span></span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 历史 */}
+          <div className="bg-white/[0.02] rounded-xl p-4">
+            <h4 className="text-xs tracking-wider text-gray-500 mb-2">历史背景</h4>
+            <p className="text-gray-400 text-sm leading-relaxed">{deep.history}</p>
+          </div>
+
+          {/* 故事线 */}
+          <div className="bg-accent/5 border border-accent/20 rounded-xl p-4">
+            <h4 className="text-sm font-semibold text-accent-light mb-2">📖 故事线</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">{deep.storyline}</p>
+          </div>
+
+          {/* 视频 */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-2">▶️ 相关视频</h4>
+            <div className="space-y-1.5">
+              {deep.bestVideos.map((v, i) => (
+                <a key={i} href={v.url} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-accent-light no-underline py-1.5 border-b border-white/5 last:border-0">
+                  <span className="text-xs bg-white/10 px-1.5 py-0.5 text-gray-500">{v.platform}</span>
+                  {v.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="bg-white/[0.02] rounded-xl p-4 text-center">
+          <p className="text-gray-500 text-sm mb-2">暂无深度资料</p>
+          <a href={`https://search.bilibili.com/all?keyword=${encodeURIComponent(c.name + ' 田径')}`} target="_blank" rel="noopener noreferrer"
+            className="text-accent-light text-sm hover:underline">▶ 在B站搜索相关信息</a>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function AthleteStars() {
   const STARS = [
     { name: '苏炳添', nameEn: 'Su Bingtian', nation: '🇨🇳', event: '100m/60m', pb: '9.83s (亚洲纪录)', born: '1989', bio: '中国短跑传奇。2021东京奥运会半决赛9.83s创亚洲纪录，成为首位进入奥运100m决赛的亚洲人。室内60m亚洲纪录保持者6.42s。2025复出后状态持续回升。技术特点：极快的前30m起跑反应+超强加速阶段。', highlights: ['2021奥运100m 9.83s 亚洲纪录', '2018室内60m 6.42s 亚洲纪录', '2015/2017世锦赛100m决赛', '2018亚运100m金牌 9.92s'], tags: ['起跑大师', '加速型', '亚洲纪录保持者'] },
