@@ -35,8 +35,8 @@ export default function ExportPDF({ plan }: Props) {
   .risk { background: #f5f5f5; padding: 8px; border-left: 2px solid #000; margin: 8px 0; font-size: 12px; color: #222; }
   .roadmap { margin: 10px 0; padding: 10px; border-left: 2px solid #000; background: #fafafa; }
 </style></head><body>
-<h1>🏃 个性化短跑训练计划</h1>
-<h2>🧬 运动员画像</h2>
+<h1> 个性化短跑训练计划</h1>
+<h2> 运动员画像</h2>
 <div class="section">
   <p class="text"><b>身体类型：</b>${plan.athleteProfile?.bodyType || ''}</p>
   <p class="text"><b>速度特点：</b>${plan.athleteProfile?.speedPhase || ''}</p>
@@ -44,35 +44,35 @@ export default function ExportPDF({ plan }: Props) {
   <p class="text"><b>短板：</b>${plan.athleteProfile?.weaknesses?.join('、') || ''}</p>
   <p class="text"><b>伤病风险：</b>${plan.athleteProfile?.injuryRisks?.join('、') || ''}</p>
 </div>
-<h2>🎯 训练重点分配</h2>
+<h2> 训练重点分配</h2>
 <div class="section">
 ${buildPriorityBars(plan)}
 </div>
-<h2>📊 综合分析</h2>
+<h2> 综合分析</h2>
 <div class="section"><p class="text">${plan.analysis}</p></div>
-<h2>📅 周训练计划</h2>
+<h2> 周训练计划</h2>
 ${plan.weeklyPlan.map(d => `
 <div class="day">
-  <p class="day-title">📅 ${d.dayOfWeek} — ${d.purpose}</p>
-  <p class="text"><span class="label">🔥 热身：</span>${d.warmup}</p>
-  <p class="text"><span class="label">🏃 主训练：</span>${d.mainTraining}</p>
-  <p class="text"><span class="label">💪 力量：</span>${d.strengthTraining}</p>
-  <p class="text"><span class="label">🔧 辅助：</span>${d.auxiliary}</p>
-  <p class="text"><span class="label">🧊 恢复：</span>${d.recovery}</p>
-  <p class="text"><span class="label">⚠️ 注意：</span>${d.notes}</p>
+  <p class="day-title"> ${d.dayOfWeek} — ${d.purpose}</p>
+  <p class="text"><span class="label"> 热身：</span>${d.warmup}</p>
+  <p class="text"><span class="label"> 主训练：</span>${d.mainTraining}</p>
+  <p class="text"><span class="label"> 力量：</span>${d.strengthTraining}</p>
+  <p class="text"><span class="label"> 辅助：</span>${d.auxiliary}</p>
+  <p class="text"><span class="label"> 恢复：</span>${d.recovery}</p>
+  <p class="text"><span class="label"> 注意：</span>${d.notes}</p>
 </div>`).join('')}
-<h2>📈 周统计</h2>
+<h2> 周统计</h2>
 <table><tr><td>速度训练</td><td>${plan.statsSummary.speedSessions}次</td><td>力量训练</td><td>${plan.statsSummary.strengthSessions}次</td><td>恢复训练</td><td>${plan.statsSummary.recoverySessions}次</td></tr></table>
 ${plan.roadmap?.length ? `
-<h2>🗺️ 训练路线图</h2>
+<h2> 训练路线图</h2>
 ${plan.roadmap.map(p => `
 <div class="roadmap">
   <p class="text"><b>第${p.phase}阶段</b>（${p.weeks}周）— ${p.goal}</p>
   <p class="text">${p.focus}</p>
-  <p class="text">📏 指标：${p.indicators?.join('、')}</p>
+  <p class="text"> 指标：${p.indicators?.join('、')}</p>
 </div>`).join('')}` : ''}
 ${plan.riskAlerts?.length ? `
-<h2>⚠️ 风险提醒</h2>
+<h2> 风险提醒</h2>
 ${plan.riskAlerts.map(r => `<div class="risk">• ${r}</div>`).join('')}` : ''}
 </body></html>`
 
