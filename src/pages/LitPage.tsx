@@ -86,7 +86,7 @@ export default function LitPage() {
                         className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-green-400/70 hover:text-green-400 no-underline transition-colors">
                         Semantic Scholar: {t.title}
                       </a>
-                      <a href={`https://sci-hub.ru/${encodeURIComponent(t.title)}`} target="_blank" rel="noopener noreferrer"
+                      <a href={`https://sci-hub.st/${encodeURIComponent(t.title)}`} target="_blank" rel="noopener noreferrer"
                         className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-red-400/70 hover:text-red-400 no-underline transition-colors">
                         📄 Sci-Hub: {t.title}
                       </a>
