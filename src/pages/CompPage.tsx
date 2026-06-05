@@ -445,7 +445,7 @@ function CompDetail({ c, deep }: { c: Competition; deep?: CompDeepDive }) {
 
 // 🤖 AI 实验室 — 三个互动工具
 function AILabs() {
-  const [tool, setTool] = useState<'h2h' | 'predict' | 'breakdown'>('h2h')
+  const [tool, setTool] = useState<'h2h' | 'predict' | 'breakdown' | 'oracle' | 'era' | 'record'>('h2h')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState('')
 
@@ -483,9 +483,12 @@ function AILabs() {
       {/* 工具切换 */}
       <div className="flex gap-2 flex-wrap">
         {[
-          { key: 'h2h' as const, label: '⚔️ 头对头模拟', desc: '任意两位运动员对决' },
-          { key: 'predict' as const, label: '🔮 赛果预测', desc: 'AI预测即将到来的比赛' },
-          { key: 'breakdown' as const, label: '🎙️ 比赛解说', desc: 'AI深度解说经典比赛' },
+          { key: 'h2h' as const, label: '⚔️ 头对头', desc: '任意两位运动员对决' },
+          { key: 'oracle' as const, label: '🔮 AI神谕', desc: '基于你的PB预测潜力上限' },
+          { key: 'era' as const, label: '⏳ 时代对比', desc: '跨时代成绩换算' },
+          { key: 'record' as const, label: '🏆 纪录拆解', desc: 'AI深挖伟大纪录的每一秒' },
+          { key: 'breakdown' as const, label: '🎙️ 解说', desc: 'AI激情解说经典比赛' },
+          { key: 'predict' as const, label: '📊 预测', desc: '赛果预测' },
         ].map(t => (
           <button key={t.key} onClick={() => { setTool(t.key); setResult('') }}
             className={`flex-1 min-w-[120px] p-4 rounded-xl border text-left transition-colors ${tool === t.key ? 'bg-accent/10 border-accent/30' : 'bg-white/[0.02] border-white/5 hover:border-white/10'}`}>
@@ -494,6 +497,63 @@ function AILabs() {
           </button>
         ))}
       </div>
+
+      {/* AI神谕 */}
+      {tool === 'oracle' && (
+        <div className="space-y-4">
+          <p className="text-sm text-gray-400">输入你的100m PB和训练背景，AI 深挖你的身体条件、技术特点和潜力空间，告诉你理论上能跑多快——以及怎么达到。</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div><label className="text-xs text-gray-500 mb-1 block">100m PB (秒)</label><input id="oraclePb" defaultValue="11.50" className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" /></div>
+            <div><label className="text-xs text-gray-500 mb-1 block">60m PB (秒，选填)</label><input id="oracle60" defaultValue="" className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" placeholder="如不知道可不填" /></div>
+            <div><label className="text-xs text-gray-500 mb-1 block">训练年限</label><input id="oracleExp" defaultValue="2年" className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" /></div>
+            <div><label className="text-xs text-gray-500 mb-1 block">年龄/性别</label><input id="oracleAge" defaultValue="22岁/男" className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" /></div>
+          </div>
+          <button onClick={() => {
+            const pb = (document.getElementById('oraclePb') as HTMLInputElement).value
+            const s60 = (document.getElementById('oracle60') as HTMLInputElement).value
+            const exp = (document.getElementById('oracleExp') as HTMLInputElement).value
+            const age = (document.getElementById('oracleAge') as HTMLInputElement).value
+            runTool(`你是一名短跑潜力分析专家。一位短跑运动员的数据：100m PB=${pb}秒${s60 ? '，60m='+s60+'秒' : ''}，训练年限=${exp}，年龄=${age}。请从以下维度深度分析：1)当前水平定位（对应什么级别的比赛）；2)身体条件推算（基于100m和60m的时间差推断是步频型还是步幅型，加速/最大速/后程哪个是短板）；3)理论潜力上限——如果短板全部补齐，100m能到多少秒？给出具体的时间分解推算；4)要补齐短板最关键的三件事。用具体、数据驱动的方式回答。`)
+          }} disabled={loading}
+            className="w-full py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-dark disabled:opacity-50 transition-colors">
+            {loading ? '⏳ AI 测算中...' : '🔮 测算我的潜力'}
+          </button>
+        </div>
+      )}
+
+      {/* 时代对比 */}
+      {tool === 'era' && (
+        <div className="space-y-4">
+          <p className="text-sm text-gray-400">伟大的成绩跨越时代——但跑道、钉鞋、训练科学在进步。AI 将历史成绩换算为现代条件下的等效成绩，让你真正理解"谁更快"。</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div><label className="text-xs text-gray-500 mb-1 block">运动员 & 成绩</label><input id="eraInput" defaultValue="Jesse Owens 10.2s (1936年柏林奥运)" className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" /></div>
+            <div><label className="text-xs text-gray-500 mb-1 block">对比现代基准</label><input id="eraModern" defaultValue="Noah Lyles 9.79s (2025世锦赛)" className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" /></div>
+          </div>
+          <button onClick={() => {
+            const input = (document.getElementById('eraInput') as HTMLInputElement).value
+            const modern = (document.getElementById('eraModern') as HTMLInputElement).value
+            runTool(`对比分析：${input} VS ${modern}。请从以下维度深度分析：1)原始成绩差距；2)跑道差异（当年煤渣跑道 vs 现代塑胶跑道——约差0.1-0.2s/100m）；3)钉鞋科技差异（皮革钉鞋 vs 碳纤维超级钉鞋）；4)起跑器差异（当时可能没有标准起跑器）；5)训练科学差异（营养/恢复/力量训练）；6)综合以上因素后，${input.split('(')[0].trim()}在现代条件下等效成绩大约是多少？这个等效成绩和${modern.split('(')[0].trim()}相比谁更强？请生动、数据化地得出结论。`)
+          }} disabled={loading}
+            className="w-full py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-dark disabled:opacity-50 transition-colors">
+            {loading ? '⏳ AI 换算中...' : '⏳ 跨时代对比'}
+          </button>
+        </div>
+      )}
+
+      {/* 纪录拆解 */}
+      {tool === 'record' && (
+        <div className="space-y-4">
+          <p className="text-sm text-gray-400">每一个伟大的纪录都不是偶然。AI 从起跑反应、分段计时、风速、海拔、温度、赛道、对手压力、个人状态等所有维度拆解一个纪录的诞生。</p>
+          <div><label className="text-xs text-gray-500 mb-1 block">选择或输入一个纪录</label><input id="recordInput" defaultValue="博尔特 9.58s 2009柏林世锦赛" className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" /></div>
+          <button onClick={() => {
+            const rec = (document.getElementById('recordInput') as HTMLInputElement).value
+            runTool(`深度拆解世界纪录：${rec}。请从以下所有维度进行数据驱动的分析——像一个法医一样解剖这个纪录：1)各10m分段计时（如果有实际数据就用实际数据，没有就用短跑生物力学模型推算）；2)起跑反应时；3)风速（合法/超风速？对成绩的影响精确到0.01s）；4)海拔和空气密度；5)赛道（第几道？弯道半径？）；6)温度和湿度；7)对手压力（同场竞争者的水平——是不是逼出了极限？）；8)运动员当天的身体状态周期（赛季巅峰还是中途？）；9)这个纪录"完美"到什么程度——如果所有条件都完美，极限还能再快多少？请用生动的语言把这个纪录诞生的故事讲出来。`)
+          }} disabled={loading}
+            className="w-full py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-dark disabled:opacity-50 transition-colors">
+            {loading ? '⏳ AI 拆解中...' : '🏆 拆解纪录'}
+          </button>
+        </div>
+      )}
 
       {/* 头对头 */}
       {tool === 'h2h' && (
