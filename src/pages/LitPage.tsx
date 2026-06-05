@@ -82,6 +82,10 @@ export default function LitPage() {
                           {s.label}
                         </a>
                       ))}
+                      <a href={`https://www.semanticscholar.org/search?q=${encodeURIComponent(t.title)}`} target="_blank" rel="noopener noreferrer"
+                        className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-green-400/70 hover:text-green-400 no-underline transition-colors">
+                        Semantic Scholar: {t.title}
+                      </a>
                     </div>
                   </div>
                 </div>
