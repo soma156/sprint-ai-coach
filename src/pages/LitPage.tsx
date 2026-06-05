@@ -82,14 +82,22 @@ export default function LitPage() {
                           {s.label}
                         </a>
                       ))}
-                      <a href={`https://www.semanticscholar.org/search?q=${encodeURIComponent(t.title)}`} target="_blank" rel="noopener noreferrer"
-                        className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-green-400/70 hover:text-green-400 no-underline transition-colors">
-                        Semantic Scholar: {t.title}
-                      </a>
-                      <a href={`https://sci-hub.st/${encodeURIComponent(t.title)}`} target="_blank" rel="noopener noreferrer"
-                        className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-red-400/70 hover:text-red-400 no-underline transition-colors">
-                        📄 Sci-Hub: {t.title}
-                      </a>
+                      {/* 外文数据库用英文关键词（从Google Scholar链接中提取） */}
+                      {(() => {
+                        const gs = t.searchLinks.find(s => s.label.startsWith('Google Scholar'))
+                        const engQuery = gs ? gs.url.split('q=')[1] || '' : encodeURIComponent(t.title)
+                        const engLabel = gs ? gs.label.replace('Google Scholar: ', '') : t.title
+                        return (<>
+                          <a href={`https://www.semanticscholar.org/search?q=${engQuery}`} target="_blank" rel="noopener noreferrer"
+                            className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-green-400/70 hover:text-green-400 no-underline transition-colors">
+                            Semantic Scholar: {engLabel}
+                          </a>
+                          <a href={`https://sci-hub.st/${engQuery}`} target="_blank" rel="noopener noreferrer"
+                            className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-red-400/70 hover:text-red-400 no-underline transition-colors">
+                            📄 Sci-Hub: {engLabel}
+                          </a>
+                        </>)
+                      })()}
                     </div>
                   </div>
                 </div>
