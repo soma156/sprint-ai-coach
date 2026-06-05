@@ -65,7 +65,7 @@ export default function CompPage() {
   const [month, setMonth] = useState(0)
   const [search, setSearch] = useState('')
   const [expanded, setExpanded] = useState<string | null>(null)
-  const [tab, setTab] = useState<'calendar' | 'rankings' | 'stars' | 'watch'>('calendar')
+  const [tab, setTab] = useState<'calendar' | 'rankings' | 'stars' | 'watch' | 'ailab'>('calendar')
   const [interested, setInterested] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem('comp-interested') || '[]') } catch { return [] }
   })
@@ -121,6 +121,7 @@ export default function CompPage() {
         {[
           { key: 'calendar' as const, label: '📅 赛事日历' },
           { key: 'watch' as const, label: '🔥 短跑观察' },
+          { key: 'ailab' as const, label: '🤖 AI实验室' },
           { key: 'rankings' as const, label: '📊 赛季排名' },
           { key: 'stars' as const, label: '⭐ 运动员' },
         ].map(t => (
@@ -245,6 +246,7 @@ export default function CompPage() {
       {tab === 'watch' && (
         <SprintWatchTab />
       )}
+      {tab === 'ailab' && <AILabs />}
       {tab === 'stars' && (
         <AthleteStars />
       )}
@@ -435,6 +437,119 @@ function CompDetail({ c, deep }: { c: Competition; deep?: CompDeepDive }) {
           <p className="text-gray-500 text-sm mb-2">暂无深度资料</p>
           <a href={`https://search.bilibili.com/all?keyword=${encodeURIComponent(c.name + ' 田径')}`} target="_blank" rel="noopener noreferrer"
             className="text-accent-light text-sm hover:underline">▶ 在B站搜索相关信息</a>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// 🤖 AI 实验室 — 三个互动工具
+function AILabs() {
+  const [tool, setTool] = useState<'h2h' | 'predict' | 'breakdown'>('h2h')
+  const [loading, setLoading] = useState(false)
+  const [result, setResult] = useState('')
+
+  // 头对头
+  const [athleteA, setAthleteA] = useState('Usain Bolt (巅峰期 9.58s)')
+  const [athleteB, setAthleteB] = useState('Noah Lyles (2025世锦赛 9.79s)')
+
+  // 赛果预测
+  const [predictEvent, setPredictEvent] = useState('钻石联赛罗马站 100m')
+
+  // 比赛解说
+  const [breakdownRace, setBreakdownRace] = useState('2025东京世锦赛 男子100m决赛')
+
+  async function runTool(prompt: string) {
+    setLoading(true); setResult('')
+    try {
+      const r = await fetch('https://api.deepseek.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${import.meta.env.VITE_DEEPSEEK_API_KEY}` },
+        body: JSON.stringify({ model: 'deepseek-chat', messages: [
+          { role: 'system', content: '你是短跑分析师+体育解说员。用中文回答，生动但不浮夸，数据分析+激情解说兼备。' },
+          { role: 'user', content: prompt },
+        ], temperature: 0.8, max_tokens: 2048 }),
+      })
+      const d = await r.json()
+      setResult(d.choices?.[0]?.message?.content || '分析失败')
+    } catch { setResult('请求失败，请重试') }
+    finally { setLoading(false) }
+  }
+
+  return (
+    <div className="space-y-6">
+      <h2 className="text-lg font-bold text-white">🤖 AI 实验室</h2>
+
+      {/* 工具切换 */}
+      <div className="flex gap-2 flex-wrap">
+        {[
+          { key: 'h2h' as const, label: '⚔️ 头对头模拟', desc: '任意两位运动员对决' },
+          { key: 'predict' as const, label: '🔮 赛果预测', desc: 'AI预测即将到来的比赛' },
+          { key: 'breakdown' as const, label: '🎙️ 比赛解说', desc: 'AI深度解说经典比赛' },
+        ].map(t => (
+          <button key={t.key} onClick={() => { setTool(t.key); setResult('') }}
+            className={`flex-1 min-w-[120px] p-4 rounded-xl border text-left transition-colors ${tool === t.key ? 'bg-accent/10 border-accent/30' : 'bg-white/[0.02] border-white/5 hover:border-white/10'}`}>
+            <div className="text-sm font-medium text-white">{t.label}</div>
+            <div className="text-xs text-gray-500 mt-0.5">{t.desc}</div>
+          </button>
+        ))}
+      </div>
+
+      {/* 头对头 */}
+      {tool === 'h2h' && (
+        <div className="space-y-4">
+          <p className="text-sm text-gray-400">让 AI 模拟两位运动员在巅峰状态下的对决。从起跑反应、加速能力、最高速度和后程保持四个维度分析胜负。</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">运动员 A</label>
+              <input value={athleteA} onChange={e => setAthleteA(e.target.value)} className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent/50" />
+            </div>
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">运动员 B</label>
+              <input value={athleteB} onChange={e => setAthleteB(e.target.value)} className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent/50" />
+            </div>
+          </div>
+          <button onClick={() => runTool(`模拟一场100m对决：${athleteA} VS ${athleteB}。请从起跑反应、前30m加速、最高速度、后程保持四个维度详细分析谁会赢，赢多少。给出具体的时间差估算和每个维度的对比。用体育解说的风格。`)} disabled={loading}
+            className="w-full py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-dark disabled:opacity-50 transition-colors">
+            {loading ? '⏳ AI 分析中...' : '⚔️ 开始对决'}
+          </button>
+        </div>
+      )}
+
+      {/* 赛果预测 */}
+      {tool === 'predict' && (
+        <div className="space-y-4">
+          <p className="text-sm text-gray-400">AI 基于近期状态、历史数据和比赛条件预测即将到来的赛事结果。</p>
+          <div>
+            <label className="text-xs text-gray-500 mb-1 block">比赛</label>
+            <input value={predictEvent} onChange={e => setPredictEvent(e.target.value)} className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" />
+          </div>
+          <button onClick={() => runTool(`预测即将到来的${predictEvent}的结果。基于运动员近期表现、历史对阵数据、比赛条件等因素，给出前三名预测和各自的夺冠概率，并简要说明理由。`)} disabled={loading}
+            className="w-full py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-dark disabled:opacity-50 transition-colors">
+            {loading ? '⏳ AI 预测中...' : '🔮 预测结果'}
+          </button>
+        </div>
+      )}
+
+      {/* 比赛解说 */}
+      {tool === 'breakdown' && (
+        <div className="space-y-4">
+          <p className="text-sm text-gray-400">AI 深度解说经典比赛——分段分析每一位选手的表现，像顶级体育评论员一样讲述比赛故事。</p>
+          <div>
+            <label className="text-xs text-gray-500 mb-1 block">比赛</label>
+            <input value={breakdownRace} onChange={e => setBreakdownRace(e.target.value)} className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm" />
+          </div>
+          <button onClick={() => runTool(`深度解说${breakdownRace}。请像体育评论员一样，从赛前悬念、起跑瞬间、加速阶段、最高速度对决、冲刺撞线每个阶段进行详细解说的风格，逐位分析选手的表现，为什么赢，为什么输。数据+激情+故事。`)} disabled={loading}
+            className="w-full py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-dark disabled:opacity-50 transition-colors">
+            {loading ? '⏳ AI 解说中...' : '🎙️ 开始解说'}
+          </button>
+        </div>
+      )}
+
+      {/* 结果 */}
+      {result && (
+        <div className="bg-white/[0.02] border border-accent/20 rounded-xl p-5">
+          <div className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">{result}</div>
         </div>
       )}
     </div>
