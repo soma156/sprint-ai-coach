@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { competitions, LEVEL_OPTIONS, MONTH_OPTIONS } from '../data/competitions'
 import { deepDives, type CompDeepDive } from '../data/comp-details'
+import { athleteTrackers, currentWatch } from '../data/sprint-watch'
 import type { Competition } from '../types'
 
 const LEVEL_COLORS: Record<Competition['level'], string> = {
@@ -64,7 +65,7 @@ export default function CompPage() {
   const [month, setMonth] = useState(0)
   const [search, setSearch] = useState('')
   const [expanded, setExpanded] = useState<string | null>(null)
-  const [tab, setTab] = useState<'calendar' | 'rankings' | 'stars'>('calendar')
+  const [tab, setTab] = useState<'calendar' | 'rankings' | 'stars' | 'watch'>('calendar')
   const [interested, setInterested] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem('comp-interested') || '[]') } catch { return [] }
   })
@@ -119,8 +120,9 @@ export default function CompPage() {
       <div className="flex border-b border-white/10">
         {[
           { key: 'calendar' as const, label: '📅 赛事日历' },
+          { key: 'watch' as const, label: '🔥 短跑观察' },
           { key: 'rankings' as const, label: '📊 赛季排名' },
-          { key: 'stars' as const, label: '⭐ 明星运动员' },
+          { key: 'stars' as const, label: '⭐ 运动员' },
         ].map(t => (
           <button key={t.key} onClick={() => setTab(t.key)}
             className={`px-4 py-2 text-sm tracking-wider transition-colors ${tab === t.key ? 'text-accent-light border-b border-accent' : 'text-gray-500 hover:text-gray-300'}`}>
@@ -240,6 +242,9 @@ export default function CompPage() {
         </div>
       )}
 
+      {tab === 'watch' && (
+        <SprintWatchTab />
+      )}
       {tab === 'stars' && (
         <AthleteStars />
       )}
@@ -432,6 +437,135 @@ function CompDetail({ c, deep }: { c: Competition; deep?: CompDeepDive }) {
             className="text-accent-light text-sm hover:underline">▶ 在B站搜索相关信息</a>
         </div>
       )}
+    </div>
+  )
+}
+
+function SprintWatchTab() {
+  const [selectedAthlete, setSelectedAthlete] = useState(0)
+  const a = athleteTrackers[selectedAthlete]
+
+  return (
+    <div className="space-y-6">
+      {/* 月度简报 */}
+      <div className="bg-accent/5 border border-accent/20 rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-accent-light mb-4">🔥 {currentWatch.month} 短跑月度观察</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white/[0.02] rounded-lg p-3">
+            <span className="text-xs text-gray-500">热门运动员</span>
+            <p className="text-gray-200 text-sm mt-1"><strong>{currentWatch.hotAthlete.name}</strong></p>
+            <p className="text-gray-400 text-xs mt-0.5">{currentWatch.hotAthlete.reason}</p>
+          </div>
+          <div className="bg-white/[0.02] rounded-lg p-3">
+            <span className="text-xs text-gray-500">本月对决</span>
+            <p className="text-gray-200 text-sm mt-1"><strong>{currentWatch.matchupOfMonth.title}</strong></p>
+            <p className="text-gray-400 text-xs mt-0.5">{currentWatch.matchupOfMonth.description}</p>
+          </div>
+          <div className="bg-white/[0.02] rounded-lg p-3">
+            <span className="text-xs text-gray-500">数据洞察</span>
+            <p className="text-gray-200 text-sm mt-1"><strong>{currentWatch.statOfMonth.stat}</strong></p>
+            <p className="text-gray-400 text-xs mt-0.5">{currentWatch.statOfMonth.context}</p>
+          </div>
+          <div className="bg-white/[0.02] rounded-lg p-3">
+            <span className="text-xs text-gray-500">即将开始</span>
+            <p className="text-gray-200 text-sm mt-1"><strong>{currentWatch.upcomingMeet.name}</strong></p>
+            <p className="text-gray-400 text-xs mt-0.5">{currentWatch.upcomingMeet.date} · {currentWatch.upcomingMeet.whyCare}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* 运动员深度追踪 */}
+      <div>
+        <h3 className="text-sm font-semibold text-white mb-3">📈 运动员表现追踪</h3>
+        <div className="flex gap-2 mb-4 flex-wrap">
+          {athleteTrackers.map((at, i) => (
+            <button key={at.name} onClick={() => setSelectedAthlete(i)}
+              className={`px-3 py-1.5 text-xs tracking-wider transition-colors ${i === selectedAthlete ? 'bg-accent/20 text-accent-light border border-accent/30' : 'bg-white/[0.02] border border-white/5 text-gray-400 hover:border-white/10'}`}>
+              {at.nation} {at.name}
+            </button>
+          ))}
+        </div>
+
+        {/* 选中运动员详情 */}
+        <div className="bg-white/[0.02] border border-white/10 rounded-xl p-5 space-y-5">
+          <div className="flex flex-wrap justify-between items-start gap-3">
+            <div>
+              <h4 className="text-lg font-bold text-white">{a.nation} {a.name} <span className="text-gray-500 text-sm font-normal">{a.nameEn}</span></h4>
+              <p className="text-gray-500 text-xs">{a.event} · PB: <span className="text-accent-light font-mono font-bold">{a.pb}</span></p>
+            </div>
+            <span className={`text-xs px-2 py-1 tracking-wider ${a.trend === 'rising' ? 'bg-green-500/20 text-green-400' : a.trend === 'stable' ? 'bg-blue-500/20 text-blue-400' : a.trend === 'comeback' ? 'bg-amber-500/20 text-amber-400' : 'bg-red-500/20 text-red-400'}`}>
+              {a.trend === 'rising' ? '📈 上升期' : a.trend === 'stable' ? '➡️ 稳定期' : a.trend === 'comeback' ? '🔄 复出中' : '📉 下滑期'}
+            </span>
+          </div>
+
+          {/* 故事 */}
+          <div className="bg-white/[0.02] rounded-lg p-4">
+            <p className="text-gray-300 text-sm leading-relaxed">{a.story}</p>
+          </div>
+
+          {/* 优缺点 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <span className="text-xs text-green-400">✅ 优势</span>
+              <ul className="text-xs text-gray-400 mt-1 list-disc list-inside space-y-0.5">
+                {a.strengthAreas.map((s,i) => <li key={i}>{s}</li>)}
+              </ul>
+            </div>
+            <div>
+              <span className="text-xs text-red-400">⚠️ 短板</span>
+              <ul className="text-xs text-gray-400 mt-1 list-disc list-inside space-y-0.5">
+                {a.weaknessAreas.map((w,i) => <li key={i}>{w}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          {/* 赛季进步 */}
+          <div>
+            <h5 className="text-xs tracking-wider text-gray-500 mb-2">📊 赛季进步轨迹</h5>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="text-gray-500 border-b border-white/5">
+                    <th className="text-left py-1 pr-3">年份</th>
+                    <th className="text-right py-1 pr-3">年龄</th>
+                    <th className="text-right py-1 pr-3">100m SB</th>
+                    <th className="text-right py-1 pr-3">200m SB</th>
+                    <th className="text-left py-1">亮点</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {a.progression.map((y,i) => (
+                    <tr key={i} className="border-b border-white/5">
+                      <td className="py-1 pr-3 text-gray-500">{y.year}</td>
+                      <td className="py-1 pr-3 text-right text-gray-400">{y.age}</td>
+                      <td className="py-1 pr-3 text-right text-accent-light font-mono">{y.sb100m}</td>
+                      <td className="py-1 pr-3 text-right text-blue-400 font-mono">{y.sb200m}</td>
+                      <td className="py-1 text-gray-500">{y.highlights}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* 近期赛果 */}
+          <div>
+            <h5 className="text-xs tracking-wider text-gray-500 mb-2">🏃 近期比赛</h5>
+            {a.recentResults.map((r,i) => (
+              <div key={i} className="flex justify-between items-start py-1.5 border-b border-white/5 last:border-0 text-xs">
+                <div>
+                  <span className="text-gray-200">{r.meet}</span>
+                  <span className="text-gray-600 ml-2">{r.event}</span>
+                </div>
+                <div className="text-right">
+                  <span className="text-white font-mono">{r.mark}</span>
+                  <span className="text-gray-500 ml-2">{r.place}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
