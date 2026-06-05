@@ -9,6 +9,7 @@ import VideoPage from './pages/VideoPage'
 import ExercisePage from './pages/ExercisePage'
 import NutritionPage from './pages/NutritionPage'
 import CompPage from './pages/CompPage'
+import LitPage from './pages/LitPage'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/exercises" element={<ExercisePage />} />
             <Route path="/nutrition" element={<NutritionPage />} />
             <Route path="/competitions" element={<CompPage />} />
+            <Route path="/science" element={<LitPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
