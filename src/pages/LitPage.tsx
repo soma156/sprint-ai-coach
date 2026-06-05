@@ -82,17 +82,18 @@ export default function LitPage() {
                           {s.label}
                         </a>
                       ))}
-                      {/* 外文数据库用英文关键词（从Google Scholar链接中提取） */}
+                      {/* 外文数据库：自动用英文关键词（从Google Scholar链接中提取） */}
                       {(() => {
                         const gs = t.searchLinks.find(s => s.label.startsWith('Google Scholar'))
-                        const engQuery = gs ? gs.url.split('q=')[1] || '' : encodeURIComponent(t.title)
+                        const raw = gs ? gs.url.split('q=')[1] || t.title : t.title
+                        const engQuery = decodeURIComponent(raw.replace(/\+/g, ' '))
                         const engLabel = gs ? gs.label.replace('Google Scholar: ', '') : t.title
                         return (<>
-                          <a href={`https://www.semanticscholar.org/search?q=${engQuery}`} target="_blank" rel="noopener noreferrer"
+                          <a href={`https://www.semanticscholar.org/search?q=${encodeURIComponent(engQuery)}`} target="_blank" rel="noopener noreferrer"
                             className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-green-400/70 hover:text-green-400 no-underline transition-colors">
                             Semantic Scholar: {engLabel}
                           </a>
-                          <a href={`https://sci-hub.st/${engQuery}`} target="_blank" rel="noopener noreferrer"
+                          <a href={`https://sci-hub.st/${encodeURIComponent(engQuery)}`} target="_blank" rel="noopener noreferrer"
                             className="text-xs bg-white/[0.02] border border-white/5 px-3 py-1.5 text-red-400/70 hover:text-red-400 no-underline transition-colors">
                             📄 Sci-Hub: {engLabel}
                           </a>
