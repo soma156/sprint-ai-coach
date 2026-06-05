@@ -102,7 +102,114 @@ export const athleteTrackers: AthleteTracker[] = [
     ],
     strengthAreas: ['年轻（上升期）', '60m起跑能力', '学习能力'],
     weaknessAreas: ['大赛经验不足', '100m后程技术', '伤病风险未知'],
-    story: '陈冠锋是中国短跑00后新生代的代表。2024年全国锦标赛100m 10.06s夺冠，被视为苏炳添之后中国短跑的希望。22岁的他正处于速度上升期，未来2-3年能否突破10秒大关将决定他能否接过中国短跑的接力棒。2027年北京世锦赛时他将是25岁——短跑的黄金年龄。',
+    story: '陈冠锋是中国短跑00后新生代的代表。2024年全国锦标赛100m 10.06s夺冠，被视为中国短跑新生代的领军人物之一。',
+  },
+  {
+    name: 'Kishane Thompson', nameEn: 'Kishane Thompson', nation: '🇯🇲', event: '100m',
+    pb: '9.77s', currentSeasonBest: '9.81s', trend: 'rising',
+    recentResults: [
+      { meet: '2025东京世锦赛', date: '2025-09', event: '100m', mark: '9.81s', place: '🥈银牌', note: '仅0.02s惜败莱尔斯' },
+      { meet: '2024牙买加选拔赛', date: '2024-06', event: '100m', mark: '9.77s', place: 'PB！', note: '牙买加新王诞生' },
+      { meet: '2024巴黎奥运', date: '2024-08', event: '100m', mark: '9.82s', place: '🥈银牌', note: '奥运首秀夺银' },
+    ],
+    progression: [
+      { year: '2023', age: 22, sb100m: '9.91s', sb200m: '—', highlights: '首破10秒' },
+      { year: '2024', age: 23, sb100m: '9.77s', sb200m: '—', highlights: '奥运银牌+PB 9.77s' },
+      { year: '2025', age: 24, sb100m: '9.81s', sb200m: '—', highlights: '世锦赛银牌' },
+    ],
+    strengthAreas: ['起跑爆发力', '前60m加速', '体格强壮（肌肉型）'], weaknessAreas: ['后程保持（vs Lyles）', '200m能力待开发'],
+    story: 'Kishane Thompson是牙买加短跑新王牌。2024年奥运选拔赛9.77s PB震惊世界，巴黎奥运和2025世锦赛连续两届100m银牌（均输莱尔斯）。他的前60m能力无人能敌，代表牙买加"肌肉爆发型"传统。若后程技术有突破，将是莱尔斯最大威胁。',
+  },
+  {
+    name: 'Marcell Jacobs', nameEn: 'Marcell Jacobs', nation: '🇮🇹', event: '100m/60m',
+    pb: '9.80s（欧洲纪录）', currentSeasonBest: '10.02s', trend: 'stable',
+    recentResults: [
+      { meet: '2021东京奥运', date: '2021-08', event: '100m', mark: '9.80s', place: '🥇金牌', note: '奥运冠军！震惊世界' },
+      { meet: '2022室内世锦赛', date: '2022-03', event: '60m', mark: '6.41s', place: '🥇金牌', note: '室内世界冠军' },
+      { meet: '2024巴黎奥运', date: '2024-08', event: '100m', mark: '9.92s', place: '第5名', note: '仍属世界顶级' },
+    ],
+    progression: [
+      { year: '2020', age: 26, sb100m: '10.10s', sb200m: '—', highlights: '从跳远转项短跑' },
+      { year: '2021', age: 27, sb100m: '9.80s', sb200m: '—', highlights: '奥运金牌+欧洲纪录！' },
+      { year: '2024', age: 30, sb100m: '9.92s', sb200m: '—', highlights: '重返顶级水平' },
+    ],
+    strengthAreas: ['起跑反应（跳远背景优势）', '60m能力', '大心脏'], weaknessAreas: ['伤病管理', '稳定性'],
+    story: 'Marcell Jacobs是短跑史上最震撼的奥运冠军之一。2021东京奥运前几乎无人认识他——决赛9.80s欧洲纪录夺金直接封神。原为跳远选手，转项短跑仅3年即夺奥运金牌。饱受伤病但每逢大赛总有竞争力。他的故事证明短跑黄金年龄可以比想象中更晚。',
+  },
+  {
+    name: 'Erriyon Knighton', nameEn: 'Erriyon Knighton', nation: '🇺🇸', event: '200m',
+    pb: '19.49s', currentSeasonBest: '19.77s', trend: 'rising',
+    recentResults: [
+      { meet: '2025钻石联赛苏州', date: '2025-05', event: '200m', mark: '19.77s', place: '🥇冠军', note: '苏州站冠军' },
+      { meet: '2024巴黎奥运', date: '2024-08', event: '200m', mark: '19.57s', place: '第4名', note: '' },
+      { meet: '2022尤金世锦赛', date: '2022-07', event: '200m', mark: '19.80s', place: '🥉铜牌', note: '18岁世锦赛奖牌' },
+    ],
+    progression: [
+      { year: '2021', age: 17, sb100m: '—', sb200m: '19.84s', highlights: '17岁奥运第4！破博尔特青年纪录' },
+      { year: '2022', age: 18, sb100m: '—', sb200m: '19.49s', highlights: '世锦赛铜牌+PB 19.49s' },
+      { year: '2024', age: 20, sb100m: '—', sb200m: '19.57s', highlights: '奥运第4名' },
+    ],
+    strengthAreas: ['年龄优势（22岁）', '200m专项化', '弯道技术'], weaknessAreas: ['100m能力', '大赛关键轮次波动'],
+    story: 'Knighton是博尔特之后最令人兴奋的200m天才。17岁19.84s打破博尔特保持的青年纪录，18岁世锦赛铜牌+19.49s PB。他的教练就是博尔特的前教练Glen Mills。天赋上限被认为可以挑战博尔特的200m世界纪录（19.19s）。',
+  },
+  {
+    name: 'Letsile Tebogo', nameEn: 'Letsile Tebogo', nation: '🇧🇼', event: '100m/200m',
+    pb: '9.86s / 19.50s', currentSeasonBest: '9.88s / 19.55s', trend: 'rising',
+    recentResults: [
+      { meet: '2025东京世锦赛', date: '2025-09', event: '200m', mark: '19.50s', place: '🥉铜牌', note: '非洲纪录！' },
+      { meet: '2024巴黎奥运', date: '2024-08', event: '200m', mark: '19.73s', place: '第6名', note: '奥运决赛首秀' },
+      { meet: '2023布达佩斯世锦赛', date: '2023-08', event: '200m', mark: '19.81s', place: '🥈银牌', note: '震惊世界的20岁少年' },
+    ],
+    progression: [
+      { year: '2022', age: 19, sb100m: '9.91s', sb200m: '—', highlights: 'U20 100m世界纪录 9.91s' },
+      { year: '2023', age: 20, sb100m: '9.86s', sb200m: '19.50s', highlights: '世锦赛银牌+双PB！' },
+      { year: '2025', age: 22, sb100m: '9.86s', sb200m: '19.50s', highlights: '世锦赛铜牌+非洲纪录' },
+    ],
+    strengthAreas: ['双项目能力', '年轻+上升势头', '非洲短跑旗帜'], weaknessAreas: ['大赛夺金经验', '对阵Lyles的心理'],
+    story: 'Tebogo是博茨瓦纳国民英雄，非洲短跑崛起的标志。2023年20岁世锦赛200m银牌震惊世界，100m 9.86s和200m 19.50s均为非洲纪录。他打破了"短跑属于美洲和牙买加"的刻板印象。Tebogo代表了田径世界的新格局。',
+  },
+  {
+    name: 'Ferdinand Omanyala', nameEn: 'Ferdinand Omanyala', nation: '🇰🇪', event: '100m',
+    pb: '9.77s（非洲纪录）', currentSeasonBest: '9.86s', trend: 'stable',
+    recentResults: [
+      { meet: '2024巴黎奥运', date: '2024-08', event: '100m', mark: '10.08s', place: '半决赛', note: '未达最佳状态' },
+      { meet: '2023布达佩斯世锦赛', date: '2023-08', event: '100m', mark: '10.01s', place: '半决赛', note: '' },
+    ],
+    progression: [
+      { year: '2021', age: 25, sb100m: '9.77s', sb200m: '—', highlights: '非洲纪录！震惊世界' },
+      { year: '2024', age: 28, sb100m: '9.86s', sb200m: '—', highlights: '奥运代表' },
+    ],
+    strengthAreas: ['前60m爆发力', '肯尼亚田径的另一面'], weaknessAreas: ['大赛稳定性', '后程保持'],
+    story: 'Omanyala是肯尼亚的短跑奇迹——以长跑闻名的国度出了非洲最快100m选手（9.77s）。他的前60m能力足以与世界最顶尖抗衡，证明了短跑天赋可以来自任何地方。',
+  },
+  {
+    name: '邓信锐', nameEn: 'Deng Xinrui', nation: '🇨🇳', event: '100m',
+    pb: '10.11s', currentSeasonBest: '10.11s', trend: 'rising',
+    recentResults: [
+      { meet: '2025全国室内赛', date: '2025-02', event: '60m', mark: '6.60s', place: '', note: '室内60m PB' },
+      { meet: '2024全国大奖赛', date: '2024-05', event: '100m', mark: '10.11s', place: '', note: 'PB' },
+    ],
+    progression: [
+      { year: '2023', age: 20, sb100m: '10.25s', sb200m: '—', highlights: '初露头角' },
+      { year: '2024', age: 21, sb100m: '10.15s', sb200m: '—', highlights: '稳步提升' },
+      { year: '2025', age: 22, sb100m: '10.11s', sb200m: '—', highlights: '突破10.20s' },
+    ],
+    strengthAreas: ['年轻（上升空间大）', '60m能力', '训练系统'], weaknessAreas: ['大赛经验', '国际竞争力'],
+    story: '邓信锐是中国短跑00后军团的又一代表。2025赛季100m 10.11s，室内60m 6.60s。22岁的他还有充足时间冲击10秒大关。在中国短跑"后苏炳添时代"，邓信锐和陈冠锋是接班的热门人选。',
+  },
+  {
+    name: '汤星强', nameEn: 'Tang Xingqiang', nation: '🇨🇳', event: '100m/200m',
+    pb: '10.22s / 20.39s', currentSeasonBest: '10.28s', trend: 'stable',
+    recentResults: [
+      { meet: '2021全运会', date: '2021-09', event: '200m', mark: '20.39s', place: '🥇金牌', note: '全运200m冠军' },
+      { meet: '2021东京奥运', date: '2021-08', event: '4×100m', mark: '37.79s', place: '🥉铜牌', note: '中国接力队核心成员' },
+    ],
+    progression: [
+      { year: '2017', age: 22, sb100m: '10.30s', sb200m: '—', highlights: '初入国家队' },
+      { year: '2021', age: 26, sb100m: '10.22s', sb200m: '20.39s', highlights: '全运200m金牌+奥运接力铜牌' },
+    ],
+    strengthAreas: ['200m弯道技术', '接力经验丰富', '交接棒适配度高'], weaknessAreas: ['100m绝对速度', '单项国际竞争力'],
+    story: '汤星强是中国男子4×100m接力的核心成员。2021全运会200m 20.39s夺金（击败谢震业）。在接力队中常跑第二或第四棒，交接棒技术成熟。虽单项不如谢震业亮眼，但在接力这一中国优势项目中是不可或缺的关键拼图。',
   },
 ]
 
