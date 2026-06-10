@@ -2,6 +2,140 @@ import { useState, useRef, useEffect } from 'react'
 import type { CapturedFrame, VideoAnalysisResult } from '../types'
 
 const btnC = "px-4 py-2 bg-accent text-white rounded-lg text-sm font-medium hover:bg-accent-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+const btnC2 = "px-3 py-1.5 bg-white/10 border border-white/20 rounded-lg text-sm text-gray-300 hover:bg-white/20 transition-colors"
+
+// Gemini 自动分析模式：提取视频帧 + AI 视觉分析
+function GeminiAnalyzer({ videoSrc }: { videoSrc: string }) {
+  const [mode, setMode] = useState<'input' | 'extracting' | 'analyzing' | 'done'>('input')
+  const [description, setDescription] = useState('')
+  const [progress, setProgress] = useState(0)
+  const [result, setResult] = useState('')
+  const [error, setError] = useState('')
+
+  async function handleAutoAnalyze() {
+    setError('')
+    setResult('')
+    setMode('extracting')
+    setProgress(0)
+
+    try {
+      // 1. 加载 FFmpeg
+      const { FFmpeg } = await import('@ffmpeg/ffmpeg')
+      const { fetchFile } = await import('@ffmpeg/util')
+      const ffmpeg = new FFmpeg()
+      await ffmpeg.load()
+      setProgress(10)
+
+      // 2. 加载视频
+      ffmpeg.on('progress', ({ progress: p }) => {
+        setProgress(10 + Math.round(p * 60))
+      })
+      await ffmpeg.writeFile('input.mp4', await fetchFile(videoSrc))
+      setProgress(70)
+
+      // 3. 提取帧（每 1 秒取 1 帧，最多 12 帧）
+      await ffmpeg.exec(['-i', 'input.mp4', '-vf', 'fps=1', '-frames:v', '12', '-q:v', '2', 'frame_%02d.jpg'])
+      setProgress(80)
+
+      // 4. 读取帧为 base64
+      const frames: { dataUrl: string; timestamp: number }[] = []
+      for (let i = 1; i <= 12; i++) {
+        const fn = `frame_${String(i).padStart(2, '0')}.jpg`
+        try {
+          const data = await ffmpeg.readFile(fn)
+          const blob = new Blob([data as BlobPart], { type: 'image/jpeg' })
+          const dataUrl = await new Promise<string>(resolve => {
+            const reader = new FileReader()
+            reader.onload = () => resolve(reader.result as string)
+            reader.readAsDataURL(blob)
+          })
+          frames.push({ dataUrl, timestamp: i })
+        } catch { break }
+      }
+      setProgress(90)
+
+      // 5. 发送到 Gemini
+      setMode('analyzing')
+      const response = await fetch('/api/gemini-vision', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          frames: frames.map(f => ({ dataUrl: f.dataUrl, timestamp: f.timestamp })),
+          prompt: `你是一名短跑生物力学专家。请分析这段短跑视频，从以下维度给出专业报告：
+1. 身体姿态：躯干角度、骨盆位置、头部位置
+2. 下肢动作：膝关节驱动、髋关节伸展、踝关节刚性、着地技术
+3. 手臂摆动：摆臂幅度、方向、协调性
+4. 技术错误：逐一指出具体问题
+5. 改进建议：针对每个问题给出训练方法
+请用中文回答，结构清晰，数据驱动。`,
+          description: description || '短跑动作视频',
+        }),
+      })
+
+      if (!response.ok) {
+        const d = await response.json().catch(() => ({}))
+        throw new Error(d.error || `请求失败 (${response.status})`)
+      }
+
+      const data = await response.json()
+      setResult(data.analysis)
+      setProgress(100)
+      setMode('done')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '分析失败')
+      setMode('input')
+    }
+  }
+
+  if (mode === 'extracting' || mode === 'analyzing') {
+    return (
+      <div className="bg-white/[0.02] border border-white/5 rounded-xl p-6 text-center space-y-4">
+        <p className="text-4xl">{mode === 'extracting' ? '🎬' : '🧠'}</p>
+        <p className="text-white font-medium">{mode === 'extracting' ? '正在提取视频帧...' : 'AI 正在分析你的动作...'}</p>
+        <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+          <div className="h-full bg-accent transition-all duration-500" style={{ width: `${progress}%` }} />
+        </div>
+        <p className="text-gray-500 text-xs">这可能需要 30-60 秒</p>
+      </div>
+    )
+  }
+
+  if (mode === 'done' && result) {
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-2">
+          <button onClick={() => { setMode('input'); setResult('') }} className={btnC2}>🔄 重新分析</button>
+        </div>
+        <div className="bg-white/[0.02] border border-accent/20 rounded-xl p-5">
+          <h3 className="text-lg font-semibold text-accent-light mb-4">📊 Gemini 视频分析报告</h3>
+          <div className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">{result}</div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="bg-white/[0.02] border border-white/5 rounded-xl p-5 space-y-4">
+      <div className="flex items-center gap-2">
+        <span className="text-xl">🤖</span>
+        <div>
+          <h3 className="text-white font-semibold">Gemini AI 自动分析</h3>
+          <p className="text-gray-500 text-xs">上传视频 → AI 自动提取关键帧 → 深度分析整个动作</p>
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs text-gray-500 mb-1">简单描述这个视频（如：100m起跑训练、200m弯道、途中跑技术...）</label>
+        <textarea value={description} onChange={e => setDescription(e.target.value)}
+          className="w-full bg-white/[0.03] border border-white/5 px-4 py-2.5 text-white text-sm rounded-lg focus:outline-none focus:border-accent/50"
+          rows={2} placeholder="描述视频内容，帮助 AI 更精准分析..." />
+      </div>
+      <button onClick={handleAutoAnalyze} className={`${btnC} w-full py-3 text-lg`}>
+        🧠 开始自动分析
+      </button>
+      {error && <p className="text-red-400 text-sm">❌ {error}</p>}
+    </div>
+  )
+}
 
 const PHASES = ['起跑', '加速阶段', '途中跑', '冲刺/后程', '弯道技术', '其他']
 
@@ -134,6 +268,9 @@ export default function VideoPage() {
               onError={() => setError('视频格式不支持，请转换为 MP4 后重试')} />
           </div>
           <canvas ref={canvasRef} className="hidden" />
+
+          {/* Gemini 自动分析 */}
+          <GeminiAnalyzer videoSrc={videoSrc} />
 
           <div className="flex gap-3">
             <button onClick={captureFrame} className={btnC}>📸 截取当前帧</button>

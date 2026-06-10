@@ -1,0 +1,1 @@
+explorer /select,"C:\Users\Aa173\新建文件夹\ai训练计划\AR篮球POV观赛体验_模板版.pptx"
