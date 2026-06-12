@@ -14,6 +14,23 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
   const [result, setResult] = useState('')
   const [error, setError] = useState('')
 
+  /** 从视频元素指定时间点截取一帧 */
+  async function captureFrameAt(video: HTMLVideoElement, canvas: HTMLCanvasElement, time: number): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const onSeeked = () => {
+        video.removeEventListener('seeked', onSeeked)
+        canvas.width = video.videoWidth || 640
+        canvas.height = video.videoHeight || 360
+        const ctx = canvas.getContext('2d')
+        if (!ctx) return reject(new Error('Canvas context 失败'))
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+        resolve(canvas.toDataURL('image/jpeg', 0.8))
+      }
+      video.addEventListener('seeked', onSeeked)
+      video.currentTime = time
+    })
+  }
+
   async function handleAutoAnalyze() {
     setError('')
     setResult('')
@@ -23,62 +40,48 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
     let step = ''
 
     try {
-      // 1. 加载 FFmpeg
-      step = 'FFmpeg 加载中...'
-      const { FFmpeg } = await import('@ffmpeg/ffmpeg')
-      const { fetchFile } = await import('@ffmpeg/util')
-      const ffmpeg = new FFmpeg()
-      await ffmpeg.load()
-      setProgress(10)
-
-      // 2. 加载视频
-      step = '视频加载中...'
-      ffmpeg.on('progress', ({ progress: p }) => {
-        setProgress(10 + Math.round(p * 60))
-      })
-      await ffmpeg.writeFile('input.mp4', await fetchFile(videoSrc))
-      setProgress(70)
-
-      // 3. 提取帧（每秒1帧，读出来再按间隔挑）
-      step = '提取视频帧...'
       const totalDuration = duration || 30
       const totalFrames = Math.min(MAX_FRAMES, Math.max(4, Math.round(totalDuration)))
       const interval = totalDuration / totalFrames
 
-      // 先按 1fps 提取所有帧
-      await ffmpeg.exec(['-i', 'input.mp4', '-vf', 'fps=1', '-q:v', '2', 'frame_%02d.jpg'])
-      setProgress(80)
+      // 1. 创建隐藏视频元素加载视频
+      step = '加载视频...'
+      const video = document.createElement('video')
+      video.src = videoSrc
+      video.crossOrigin = 'anonymous'
+      video.preload = 'auto'
+      await new Promise<void>((resolve, reject) => {
+        video.onloadedmetadata = () => resolve()
+        video.onerror = () => reject(new Error('视频加载失败'))
+        // 如果 30 秒还没加载完就报错
+        setTimeout(() => reject(new Error('视频加载超时')), 30000)
+      })
+      setProgress(20)
 
-      // 4. 读取所有 1fps 帧，再均匀挑选
-      step = '读取帧数据...'
-      const allFrames: { dataUrl: string; timestamp: number }[] = []
-      let frameIdx = 1
-      while (true) {
-        const fn = `frame_${String(frameIdx).padStart(2, '0')}.jpg`
-        try {
-          const data = await ffmpeg.readFile(fn)
-          const blob = new Blob([data as BlobPart], { type: 'image/jpeg' })
-          const dataUrl = await new Promise<string>(resolve => {
-            const reader = new FileReader()
-            reader.onload = () => resolve(reader.result as string)
-            reader.readAsDataURL(blob)
-          })
-          allFrames.push({ dataUrl, timestamp: frameIdx })
-          frameIdx++
-        } catch { break }
+      // 2. 创建 canvas
+      step = '提取视频帧...'
+      const canvas = document.createElement('canvas')
+      const timestamps: number[] = []
+      for (let i = 0; i < totalFrames; i++) {
+        timestamps.push(Math.round((i * interval + interval / 2) * 100) / 100)
       }
 
-      // 从全部帧中均匀挑选 totalFrames 帧
+      // 3. 逐个截取
       const frames: { dataUrl: string; timestamp: number }[] = []
-      if (allFrames.length <= totalFrames) {
-        frames.push(...allFrames)
-      } else {
-        const pickEvery = (allFrames.length - 1) / (totalFrames - 1)
-        for (let i = 0; i < totalFrames; i++) {
-          frames.push(allFrames[Math.round(i * pickEvery)])
-        }
+      for (let i = 0; i < timestamps.length; i++) {
+        step = `截取第 ${i + 1}/${totalFrames} 帧...`
+        try {
+          const dataUrl = await captureFrameAt(video, canvas, timestamps[i])
+          frames.push({ dataUrl, timestamp: timestamps[i] })
+          setProgress(20 + Math.round(((i + 1) / totalFrames) * 60))
+        } catch { /* 跳过截取失败的帧 */ }
       }
-      setProgress(90)
+
+      // 清理
+      video.pause()
+      video.src = ''
+      video.load()
+      setProgress(80)
 
       // 5. 直接调用 Gemini API（无需后端，GitHub Pages 可用）
       setMode('analyzing')
