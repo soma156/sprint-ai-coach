@@ -63,7 +63,7 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
 
       // 5. 直接调用 Gemini API（无需后端，GitHub Pages 可用）
       setMode('analyzing')
-      const GEMINI_KEY = (import.meta as any).env?.VITE_GEMINI_API_KEY || ''
+      const GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY
       if (!GEMINI_KEY) throw new Error('未配置 Gemini API Key')
 
       const parts: Array<{ text?: string; inlineData?: { mimeType: string; data: string } }> = []
