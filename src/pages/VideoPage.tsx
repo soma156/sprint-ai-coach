@@ -20,8 +20,11 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
     setMode('extracting')
     setProgress(0)
 
+    let step = ''
+
     try {
       // 1. 加载 FFmpeg
+      step = 'FFmpeg 加载中...'
       const { FFmpeg } = await import('@ffmpeg/ffmpeg')
       const { fetchFile } = await import('@ffmpeg/util')
       const ffmpeg = new FFmpeg()
@@ -29,13 +32,16 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
       setProgress(10)
 
       // 2. 加载视频
+      step = '视频加载中...'
       ffmpeg.on('progress', ({ progress: p }) => {
         setProgress(10 + Math.round(p * 60))
       })
       await ffmpeg.writeFile('input.mp4', await fetchFile(videoSrc))
       setProgress(70)
 
-      const totalDuration = duration || 30 // 兜底：假设 30 秒
+      // 3. 提取帧
+      step = '提取视频帧...'
+      const totalDuration = duration || 30
       const totalFrames = Math.min(MAX_FRAMES, Math.max(4, Math.round(totalDuration)))
       const interval = totalDuration / totalFrames
 
@@ -43,6 +49,7 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
       setProgress(80)
 
       // 4. 读取帧为 base64
+      step = '读取帧数据...'
       const frames: { dataUrl: string; timestamp: number }[] = []
       for (let i = 1; i <= totalFrames; i++) {
         const fn = `frame_${String(i).padStart(2, '0')}.jpg`
@@ -54,7 +61,6 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
             reader.onload = () => resolve(reader.result as string)
             reader.readAsDataURL(blob)
           })
-          // 时间戳均匀分布在整个视频中
           const timestamp = Math.round(i * interval * 100) / 100
           frames.push({ dataUrl, timestamp })
         } catch { break }
@@ -107,14 +113,18 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
       setProgress(100)
       setMode('done')
     } catch (err) {
-      const msg = err instanceof Error ? err.message : '分析失败'
-      // 区分网络被墙 vs 其他错误
+      const raw = err instanceof Error ? err.message : String(err)
+      const msg = raw || '分析失败'
+      // 带步骤信息的错误
+      const full = step ? `[${step}] ${msg}` : msg
       if (msg.includes('Failed to fetch') || msg.includes('NetworkError')) {
         setError('Google Gemini API 在中国境内被墙，请使用科学上网后重试')
+      } else if (msg.includes('SharedArrayBuffer')) {
+        setError('浏览器不支持 SharedArrayBuffer，请用 Chrome/Edge 打开')
       } else {
-        setError(msg)
+        setError(full)
       }
-      console.error('[GeminiAnalyzer]', msg, err)
+      console.error('[GeminiAnalyzer] 步骤:', step, '错误:', msg, err)
       setMode('input')
     }
   }
