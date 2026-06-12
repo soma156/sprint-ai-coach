@@ -107,7 +107,14 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
       setProgress(100)
       setMode('done')
     } catch (err) {
-      setError(err instanceof Error ? err.message : '分析失败')
+      const msg = err instanceof Error ? err.message : '分析失败'
+      // 区分网络被墙 vs 其他错误
+      if (msg.includes('Failed to fetch') || msg.includes('NetworkError')) {
+        setError('Google Gemini API 在中国境内被墙，请使用科学上网后重试')
+      } else {
+        setError(msg)
+      }
+      console.error('[GeminiAnalyzer]', msg, err)
       setMode('input')
     }
   }
