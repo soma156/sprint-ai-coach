@@ -5,7 +5,9 @@ const btnC = "px-4 py-2 bg-accent text-white rounded-lg text-sm font-medium hove
 const btnC2 = "px-3 py-1.5 bg-white/10 border border-white/20 rounded-lg text-sm text-gray-300 hover:bg-white/20 transition-colors"
 
 // Gemini 自动分析模式：提取视频帧 + AI 视觉分析
-function GeminiAnalyzer({ videoSrc }: { videoSrc: string }) {
+const MAX_FRAMES = 16 // Gemini API 上限
+
+function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: number }) {
   const [mode, setMode] = useState<'input' | 'extracting' | 'analyzing' | 'done'>('input')
   const [description, setDescription] = useState('')
   const [progress, setProgress] = useState(0)
@@ -33,13 +35,16 @@ function GeminiAnalyzer({ videoSrc }: { videoSrc: string }) {
       await ffmpeg.writeFile('input.mp4', await fetchFile(videoSrc))
       setProgress(70)
 
-      // 3. 提取帧（每 1 秒取 1 帧，最多 12 帧）
-      await ffmpeg.exec(['-i', 'input.mp4', '-vf', 'fps=1', '-frames:v', '12', '-q:v', '2', 'frame_%02d.jpg'])
+      const totalDuration = duration || 30 // 兜底：假设 30 秒
+      const totalFrames = Math.min(MAX_FRAMES, Math.max(4, Math.round(totalDuration)))
+      const interval = totalDuration / totalFrames
+
+      await ffmpeg.exec(['-i', 'input.mp4', '-vf', `fps=1/${interval.toFixed(2)}`, '-frames:v', String(totalFrames), '-q:v', '2', 'frame_%02d.jpg'])
       setProgress(80)
 
       // 4. 读取帧为 base64
       const frames: { dataUrl: string; timestamp: number }[] = []
-      for (let i = 1; i <= 12; i++) {
+      for (let i = 1; i <= totalFrames; i++) {
         const fn = `frame_${String(i).padStart(2, '0')}.jpg`
         try {
           const data = await ffmpeg.readFile(fn)
@@ -49,36 +54,56 @@ function GeminiAnalyzer({ videoSrc }: { videoSrc: string }) {
             reader.onload = () => resolve(reader.result as string)
             reader.readAsDataURL(blob)
           })
-          frames.push({ dataUrl, timestamp: i })
+          // 时间戳均匀分布在整个视频中
+          const timestamp = Math.round(i * interval * 100) / 100
+          frames.push({ dataUrl, timestamp })
         } catch { break }
       }
       setProgress(90)
 
-      // 5. 发送到 Gemini
+      // 5. 直接调用 Gemini API（无需后端，GitHub Pages 可用）
       setMode('analyzing')
-      const response = await fetch('/api/gemini-vision', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          frames: frames.map(f => ({ dataUrl: f.dataUrl, timestamp: f.timestamp })),
-          prompt: `你是一名短跑生物力学专家。请分析这段短跑视频，从以下维度给出专业报告：
+      const GEMINI_KEY = (import.meta as any).env?.VITE_GEMINI_API_KEY || ''
+      if (!GEMINI_KEY) throw new Error('未配置 Gemini API Key')
+
+      const parts: Array<{ text?: string; inlineData?: { mimeType: string; data: string } }> = []
+      parts.push({ text: `你是一名短跑生物力学专家。请分析这段短跑视频，从以下维度给出专业报告：
 1. 身体姿态：躯干角度、骨盆位置、头部位置
 2. 下肢动作：膝关节驱动、髋关节伸展、踝关节刚性、着地技术
 3. 手臂摆动：摆臂幅度、方向、协调性
 4. 技术错误：逐一指出具体问题
 5. 改进建议：针对每个问题给出训练方法
-请用中文回答，结构清晰，数据驱动。`,
-          description: description || '短跑动作视频',
-        }),
-      })
+请用中文回答，结构清晰，数据驱动。
+用户描述：${description || '未提供'}` })
+
+      for (const f of frames) {
+        if (f.dataUrl.startsWith('data:image')) {
+          const [header, data] = f.dataUrl.split(',')
+          const mimeType = header.split(':')[1].split(';')[0]
+          parts.push({ inlineData: { mimeType, data } })
+        }
+      }
+
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts }],
+            generationConfig: { temperature: 0.4, maxOutputTokens: 4096 },
+          }),
+        }
+      )
 
       if (!response.ok) {
-        const d = await response.json().catch(() => ({}))
-        throw new Error(d.error || `请求失败 (${response.status})`)
+        const err = await response.text()
+        throw new Error(`Gemini API 错误: ${err}`)
       }
 
       const data = await response.json()
-      setResult(data.analysis)
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '分析未返回内容'
+      setResult(text)
       setProgress(100)
       setMode('done')
     } catch (err) {
@@ -141,6 +166,7 @@ const PHASES = ['起跑', '加速阶段', '途中跑', '冲刺/后程', '弯道�
 
 export default function VideoPage() {
   const [videoSrc, setVideoSrc] = useState<string | null>(null)
+  const [videoDuration, setVideoDuration] = useState(0)
   const [frames, setFrames] = useState<CapturedFrame[]>([])
   const [selectedFrame, setSelectedFrame] = useState<string | null>(null)
   const [result, setResult] = useState<VideoAnalysisResult | null>(null)
@@ -265,12 +291,13 @@ export default function VideoPage() {
           {/* 视频播放器 */}
           <div className="bg-black rounded-xl overflow-hidden">
             <video ref={videoRef} src={videoSrc} controls className="w-full max-h-[400px]"
+              onLoadedMetadata={() => { if (videoRef.current) setVideoDuration(videoRef.current.duration) }}
               onError={() => setError('视频格式不支持，请转换为 MP4 后重试')} />
           </div>
           <canvas ref={canvasRef} className="hidden" />
 
           {/* Gemini 自动分析 */}
-          <GeminiAnalyzer videoSrc={videoSrc} />
+          <GeminiAnalyzer videoSrc={videoSrc} duration={videoDuration} />
 
           <div className="flex gap-3">
             <button onClick={captureFrame} className={btnC}>📸 截取当前帧</button>

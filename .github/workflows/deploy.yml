@@ -32,6 +32,7 @@ jobs:
       - name: 构建项目
         env:
           VITE_DEEPSEEK_API_KEY: ${{ secrets.VITE_DEEPSEEK_API_KEY }}
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
           VITE_BASE: /sprint-ai-coach/
         run: npm run build
 
