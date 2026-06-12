@@ -39,20 +39,22 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
       await ffmpeg.writeFile('input.mp4', await fetchFile(videoSrc))
       setProgress(70)
 
-      // 3. 提取帧
+      // 3. 提取帧（每秒1帧，读出来再按间隔挑）
       step = '提取视频帧...'
       const totalDuration = duration || 30
       const totalFrames = Math.min(MAX_FRAMES, Math.max(4, Math.round(totalDuration)))
       const interval = totalDuration / totalFrames
 
-      await ffmpeg.exec(['-i', 'input.mp4', '-vf', `fps=1/${interval.toFixed(2)}`, '-frames:v', String(totalFrames), '-q:v', '2', 'frame_%02d.jpg'])
+      // 先按 1fps 提取所有帧
+      await ffmpeg.exec(['-i', 'input.mp4', '-vf', 'fps=1', '-q:v', '2', 'frame_%02d.jpg'])
       setProgress(80)
 
-      // 4. 读取帧为 base64
+      // 4. 读取所有 1fps 帧，再均匀挑选
       step = '读取帧数据...'
-      const frames: { dataUrl: string; timestamp: number }[] = []
-      for (let i = 1; i <= totalFrames; i++) {
-        const fn = `frame_${String(i).padStart(2, '0')}.jpg`
+      const allFrames: { dataUrl: string; timestamp: number }[] = []
+      let frameIdx = 1
+      while (true) {
+        const fn = `frame_${String(frameIdx).padStart(2, '0')}.jpg`
         try {
           const data = await ffmpeg.readFile(fn)
           const blob = new Blob([data as BlobPart], { type: 'image/jpeg' })
@@ -61,9 +63,20 @@ function GeminiAnalyzer({ videoSrc, duration }: { videoSrc: string; duration: nu
             reader.onload = () => resolve(reader.result as string)
             reader.readAsDataURL(blob)
           })
-          const timestamp = Math.round(i * interval * 100) / 100
-          frames.push({ dataUrl, timestamp })
+          allFrames.push({ dataUrl, timestamp: frameIdx })
+          frameIdx++
         } catch { break }
+      }
+
+      // 从全部帧中均匀挑选 totalFrames 帧
+      const frames: { dataUrl: string; timestamp: number }[] = []
+      if (allFrames.length <= totalFrames) {
+        frames.push(...allFrames)
+      } else {
+        const pickEvery = (allFrames.length - 1) / (totalFrames - 1)
+        for (let i = 0; i < totalFrames; i++) {
+          frames.push(allFrames[Math.round(i * pickEvery)])
+        }
       }
       setProgress(90)
 
